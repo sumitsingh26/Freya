@@ -1,0 +1,60 @@
+{
+    "translation" : {
+
+        "search_with_google" : "Sök med Google",
+        "continue_with_apple" : "Fortsätt med Apple",
+        "continue_with_email" : "Fortsätt med e-post",
+        "already_have_an_account" : "Har du redan ett konto",
+        "sign_in_here" : "Logga in här",
+
+
+        "login" : "Logga in",
+        "e_mail" : "E-post",
+        "password" : "Lösenord",
+        "send_verification_code" : "Skicka verifieringskod",
+
+
+        "choose_your_account" : "Välj ditt konto",
+        "first_name" : "Förnamn",
+        "last_name" : "Efternamn",
+        "your_birth_day" : "Din födelsedag",
+        "gender" : "Kön",
+        "phone_no" : "Telefonnr.",
+        "sign_up" : "Bli Medlem",
+
+
+
+        "check_your_email" : "Kolla din mail",
+        "an_email_with_verification_code_has_been_sent_to_your_email_id_write_the_code_below_to_continue" : "Ett e-postmeddelande med verifieringskod har skickats till ditt e-post-ID. Skriv koden nedan för att fortsätta",
+        "didn't_receive_it_yet" : "Har du inte fått den ännu",
+        "resend_code" : "Återsänd koden",
+        "Continue" : "Fortsätta",
+
+
+
+        "text_sent" : "SMS skickat",
+        "a_text_with_verification_code_has_been_sent_to_your_provided_number_write_the_code_below_to_continue" : "Ett sms med verifieringskod har skickats till ditt angivna nummer. Skriv koden nedan för att fortsätta",
+
+
+
+        
+        "select_your_language_&_location" : "Välj ditt språk och din plats",
+        "your_location" : "Din plats",
+        "select" : "Välj",
+        "preferred_language" : "Önskat språk",
+
+
+
+
+
+
+
+
+        "search" : "Sök",
+        "discover_our_clinics" : "Upptäck våra kliniker",
+        "best_botox_around" : "Bästa Botox som finns",
+        "whats_new_near_you" : "Vad är nytt nära dig",
+        "filler_favourites" : "Filler Favoriter",
+        "laser_hair_removal" : "Laserhårborttagning"
+    }
+}

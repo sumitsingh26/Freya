@@ -1,0 +1,55 @@
+{
+    "translation" : {
+
+        "search_with_google" : "Search With Google",
+        "continue_with_apple" : "Continue with Apple",
+        "continue_with_email" : "Continue with Email",
+        "already_have_an_account" : "Already have an account",
+        "sign_in_here" : "Sign In here",
+
+
+        "login" : "Login",
+        "e_mail" : "Email",
+        "password" : "Password",
+        "send_verification_code" : "Send Verification Code",
+
+
+        "choose_your_account" : "Choose Your Account",
+        "first_name" : "First Name",
+        "last_name" : "Last Name",
+        "your_birth_day" : "Your Birth Day",
+        "gender" : "Gender",
+        "phone_no" : "Phone No.",
+        "sign_up" : "Sign Up",
+
+
+        "check_your_email" : "Check Your Email",
+        "an_email_with_verification_code_has_been_sent_to_your_email_id_write_the_code_below_to_continue" : "An email with verification code has been sent to your email id. Write the code below to continue",
+        "didn't_receive_it_yet" : "Didn't receive it yet",
+        "resend_code" : "Resend code",
+        "Continue" : "Continue",
+
+
+
+        "text_sent" : "Text Sent",
+        "a_text_with_verification_code_has_been_sent_to_your_provided_number_write_the_code_below_to_continue" : "A text with verification code has been sent to your provided number. Write the code below to continue",
+
+
+
+        "select_your_language_&_location" : "Select Your Language & Location",
+        "your_location" : "Your Location",
+        "select" : "Select",
+        "preferred_language" : "Preferred Language",
+        
+
+
+
+        
+        "search" : "Search",
+        "discover_our_clinics" : "Discover our clinics",
+        "best_botox_around" : "Best Botox Around",
+        "whats_new_near_you" : "Whats new near you",
+        "filler_favourites" : "Filler Favourites",
+        "laser_hair_removal" : "Laser Hair Removal"
+    }
+}

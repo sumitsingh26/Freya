@@ -11,9 +11,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		5766525A2DD4F32B4181E774 /* libPods-Freya-FreyaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6464DB6BCDDB5B37BFA64303 /* libPods-Freya-FreyaTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		8BA5FCD1FE93B5DE932E3596 /* libPods-Freya.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6DC6D167014635F5729F91 /* libPods-Freya.a */; };
+		C7B1E9B293ADD039AB9181B4 /* libPods-Freya.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C52AD2D548EB2EDA9ECB6E /* libPods-Freya.a */; };
+		D5A5CB20C46CCD00EA7A6767 /* libPods-Freya-FreyaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCDEC4683D2DA50A6F61696 /* libPods-Freya-FreyaTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,20 +30,20 @@
 		00E356EE1AD99517003FC87E /* FreyaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreyaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* FreyaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreyaTests.m; sourceTree = "<group>"; };
-		112A32460BFDA2A394B21B75 /* Pods-Freya.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freya.release.xcconfig"; path = "Target Support Files/Pods-Freya/Pods-Freya.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Freya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Freya/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Freya/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Freya/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Freya/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Freya/main.m; sourceTree = "<group>"; };
-		2D6DC6D167014635F5729F91 /* libPods-Freya.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Freya.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F93F92BF0A738C285D393C8 /* Pods-Freya-FreyaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freya-FreyaTests.release.xcconfig"; path = "Target Support Files/Pods-Freya-FreyaTests/Pods-Freya-FreyaTests.release.xcconfig"; sourceTree = "<group>"; };
-		5D390BBBC815D52C7F63E16C /* Pods-Freya.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freya.debug.xcconfig"; path = "Target Support Files/Pods-Freya/Pods-Freya.debug.xcconfig"; sourceTree = "<group>"; };
-		6464DB6BCDDB5B37BFA64303 /* libPods-Freya-FreyaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Freya-FreyaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18C1C78B9D46E0554BF469E8 /* Pods-Freya-FreyaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freya-FreyaTests.release.xcconfig"; path = "Target Support Files/Pods-Freya-FreyaTests/Pods-Freya-FreyaTests.release.xcconfig"; sourceTree = "<group>"; };
+		34C52AD2D548EB2EDA9ECB6E /* libPods-Freya.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Freya.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BCDEC4683D2DA50A6F61696 /* libPods-Freya-FreyaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Freya-FreyaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E73968EADDFA1F326406946 /* Pods-Freya.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freya.release.xcconfig"; path = "Target Support Files/Pods-Freya/Pods-Freya.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Freya/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C690C88AA13A0348D161C35B /* Pods-Freya-FreyaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freya-FreyaTests.debug.xcconfig"; path = "Target Support Files/Pods-Freya-FreyaTests/Pods-Freya-FreyaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AD987226E9E2AC679AA0092F /* Pods-Freya-FreyaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freya-FreyaTests.debug.xcconfig"; path = "Target Support Files/Pods-Freya-FreyaTests/Pods-Freya-FreyaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F0D8BF20281E54CAD651A392 /* Pods-Freya.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freya.debug.xcconfig"; path = "Target Support Files/Pods-Freya/Pods-Freya.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5766525A2DD4F32B4181E774 /* libPods-Freya-FreyaTests.a in Frameworks */,
+				D5A5CB20C46CCD00EA7A6767 /* libPods-Freya-FreyaTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BA5FCD1FE93B5DE932E3596 /* libPods-Freya.a in Frameworks */,
+				C7B1E9B293ADD039AB9181B4 /* libPods-Freya.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				2D6DC6D167014635F5729F91 /* libPods-Freya.a */,
-				6464DB6BCDDB5B37BFA64303 /* libPods-Freya-FreyaTests.a */,
+				34C52AD2D548EB2EDA9ECB6E /* libPods-Freya.a */,
+				4BCDEC4683D2DA50A6F61696 /* libPods-Freya-FreyaTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,10 +140,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5D390BBBC815D52C7F63E16C /* Pods-Freya.debug.xcconfig */,
-				112A32460BFDA2A394B21B75 /* Pods-Freya.release.xcconfig */,
-				C690C88AA13A0348D161C35B /* Pods-Freya-FreyaTests.debug.xcconfig */,
-				3F93F92BF0A738C285D393C8 /* Pods-Freya-FreyaTests.release.xcconfig */,
+				F0D8BF20281E54CAD651A392 /* Pods-Freya.debug.xcconfig */,
+				5E73968EADDFA1F326406946 /* Pods-Freya.release.xcconfig */,
+				AD987226E9E2AC679AA0092F /* Pods-Freya-FreyaTests.debug.xcconfig */,
+				18C1C78B9D46E0554BF469E8 /* Pods-Freya-FreyaTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -155,12 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "FreyaTests" */;
 			buildPhases = (
-				554575D0965EFF47ED0C4FE1 /* [CP] Check Pods Manifest.lock */,
+				EB01A1DABD1B2A51E7FD0A95 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				6694AC0BF09A9849B8BAE2F9 /* [CP] Embed Pods Frameworks */,
-				6147F3E799844102EBBD6A27 /* [CP] Copy Pods Resources */,
+				D659F89B5A9EA431884000C8 /* [CP] Embed Pods Frameworks */,
+				53EA7C918AF5AB4F3C19ADAD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,13 +176,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Freya" */;
 			buildPhases = (
-				6EC3C9EF23FAD505C2930702 /* [CP] Check Pods Manifest.lock */,
+				1E0B5DE2CC48D3869926015F /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				3A4276587A8665535B1DD271 /* [CP] Embed Pods Frameworks */,
-				2C9742D31339EE970AFD02F6 /* [CP] Copy Pods Resources */,
+				40307402160E7F846F7106E2 /* [CP] Embed Pods Frameworks */,
+				16052B8BA9D4A30E90DD126C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,7 +265,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		2C9742D31339EE970AFD02F6 /* [CP] Copy Pods Resources */ = {
+		16052B8BA9D4A30E90DD126C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -282,7 +282,29 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Freya/Pods-Freya-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3A4276587A8665535B1DD271 /* [CP] Embed Pods Frameworks */ = {
+		1E0B5DE2CC48D3869926015F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Freya-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40307402160E7F846F7106E2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -299,29 +321,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Freya/Pods-Freya-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		554575D0965EFF47ED0C4FE1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Freya-FreyaTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6147F3E799844102EBBD6A27 /* [CP] Copy Pods Resources */ = {
+		53EA7C918AF5AB4F3C19ADAD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -338,7 +338,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Freya-FreyaTests/Pods-Freya-FreyaTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6694AC0BF09A9849B8BAE2F9 /* [CP] Embed Pods Frameworks */ = {
+		D659F89B5A9EA431884000C8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -355,7 +355,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Freya-FreyaTests/Pods-Freya-FreyaTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6EC3C9EF23FAD505C2930702 /* [CP] Check Pods Manifest.lock */ = {
+		EB01A1DABD1B2A51E7FD0A95 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -370,7 +370,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Freya-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Freya-FreyaTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -410,7 +410,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C690C88AA13A0348D161C35B /* Pods-Freya-FreyaTests.debug.xcconfig */;
+			baseConfigurationReference = AD987226E9E2AC679AA0092F /* Pods-Freya-FreyaTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -437,7 +437,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F93F92BF0A738C285D393C8 /* Pods-Freya-FreyaTests.release.xcconfig */;
+			baseConfigurationReference = 18C1C78B9D46E0554BF469E8 /* Pods-Freya-FreyaTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -461,7 +461,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D390BBBC815D52C7F63E16C /* Pods-Freya.debug.xcconfig */;
+			baseConfigurationReference = F0D8BF20281E54CAD651A392 /* Pods-Freya.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -493,7 +493,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 112A32460BFDA2A394B21B75 /* Pods-Freya.release.xcconfig */;
+			baseConfigurationReference = 5E73968EADDFA1F326406946 /* Pods-Freya.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -590,7 +590,10 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -658,7 +661,10 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

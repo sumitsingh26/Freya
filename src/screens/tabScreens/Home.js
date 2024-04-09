@@ -8,10 +8,60 @@ import HomeFillerFav from '../cardScreens/HomeFillerFav'
 import HomeLaserHair from '../cardScreens/HomeLaserHair'
 import { useNavigation } from '@react-navigation/native'
 
+import '../../services/i18n';
+import { useTranslation } from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 
 
 
 const Home = () => {
+  const {t, i18n} = useTranslation(); 
+  
+  const [currentLanguage,setLanguage] = useState('en');
+
+  const storeData = async ( lang ) => {
+    try {
+      await AsyncStorage.setItem('myKey', lang);
+      changeLanguage();
+      console.log('Data stored successfully!');
+    } catch (error) {
+      console.log('Error storing data:', error);
+    }
+  };
+
+  const changeLanguage = async () => { 
+    const data = await AsyncStorage.getItem("myKey")
+    console.log("Key :" +data);
+    
+    i18n 
+      .changeLanguage(data) 
+      .then(() => setLanguage(data)) 
+      .catch(err => console.log(err)); 
+
+  }; 
+
+  useEffect(() => {
+    const fetchLanguage = async () => {
+      try {
+        const language = await AsyncStorage.getItem('myKey');
+        if (language) {
+          // setLanguage(language);
+          i18n 
+          .changeLanguage(language) 
+          .then(() => setLanguage(language)) 
+          .catch(err => console.log(err)); 
+        }
+      } catch (error) {
+        console.error('Error fetching language:', error);
+      }
+    };
+
+    fetchLanguage();
+    storeData('en');
+  }, []);
+ 
+
   const screenWidth = Dimensions.get('window').width;
   const navigation = useNavigation();
   const images = [
@@ -163,7 +213,7 @@ const Home = () => {
           <View style={[styles.searchContainer, {justifyContent: 'center'}]}>
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
               <Image style={{ width: 17, height: 17, marginLeft: 100 }} source={imagepath.searchIcon} />
-              <TextInput placeholder='Search' placeholderTextColor={"white"} style={styles.searchTextContainer} />
+              <TextInput placeholder={t('search')} placeholderTextColor={"white"} style={styles.searchTextContainer} />
             </View>
           </View>
         </View>
@@ -179,7 +229,7 @@ const Home = () => {
 
       <ScrollView style={{ marginTop: 10 }}>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleTextContainer}>Discover our clinics</Text>
+          <Text style={styles.titleTextContainer}>{t('discover_our_clinics')}</Text>
           <View style={{ width: "25%", flexDirection: 'row', justifyContent: 'flex-end', marginTop: 10 }}>
             <View style={{ marginRight: 10 }}>
               <Image style={{ width: 32, height: 32, resizeMode: 'cover' }} source={imagepath.bgRound} />
@@ -229,7 +279,7 @@ const Home = () => {
             padding: 5,
             marginLeft: 10,
             marginTop: 10
-          }}>Best Botox Around 💉</Text>
+          }}>{t('best_botox_around')} 💉</Text>
 
           <FlatList
             horizontal
@@ -252,7 +302,7 @@ const Home = () => {
               color: "#607274",
               marginLeft: 14,
               marginTop: 10
-            }}>Whats new near you ✨</Text>
+            }}>{t('whats_new_near_you')} ✨</Text>
             <FlatList
               horizontal
               keyExtractor={(index) => {
@@ -272,7 +322,7 @@ const Home = () => {
             color: "#607274",
             padding: 5,
             marginTop: 10
-          }}>✨Filler Favourites💉</Text>
+          }}>✨{t('filler_favourites')}💉</Text>
 
           <FlatList
             horizontal
@@ -293,7 +343,7 @@ const Home = () => {
               color: "#607274",
               padding: 5,
               marginTop: 10
-            }}>Laser Hair Removal</Text>
+            }}>{t('laser_hair_removal')}</Text>
             <Image style={{ width: 42, height: 22, marginTop: 8 }} source={imagepath.laserIcon} />
           </View>
 

@@ -1,0 +1,59 @@
+{
+    "translation" : {
+        "search_with_google" : "Hae Googlella",
+        "continue_with_apple" : "Jatka Applella",
+        "continue_with_email" : "Jatka sähköpostilla",
+        "already_have_an_account" : "Onko sinulla jo tili",
+        "sign_in_here" : "Kirjaudu sisään tästä",
+
+
+        "login" : "Kirjaudu sisään",
+        "e_mail" : "Sähköposti",
+        "password" : "Salasana",
+        "send_verification_code" : "Lähetä vahvistuskoodi",
+
+
+        "choose_your_account" : "Valitse tilisi",
+        "first_name" : "Etunimi",
+        "last_name" : "Sukunimi",
+        "your_birth_day" : "Sinun syntymäpäiväsi",
+        "gender" : "Sukupuoli",
+        "phone_no" : "Puhelin ei.",
+        "sign_up" : "Kirjaudu",
+
+
+
+        "check_your_email" : "Tarkista sähköpostisi",
+        "an_email_with_verification_code_has_been_sent_to_your_email_id_write_the_code_below_to_continue" : "Sähköpostitunnukseesi on lähetetty vahvistuskoodin sisältävä sähköposti. Kirjoita alla oleva koodi jatkaaksesi",
+        "didn't_receive_it_yet" : "Etkö ole vielä saanut sitä",
+        "resend_code" : "Lähetä koodi uudelleen",
+        "Continue" : "Jatkaa",
+
+
+
+        "text_sent" : "Teksti lähetetty",
+        "a_text_with_verification_code_has_been_sent_to_your_provided_number_write_the_code_below_to_continue" : "Vahvistuskoodin sisältävä tekstiviesti on lähetetty antamaasi numeroon. Kirjoita alla oleva koodi jatkaaksesi",
+
+
+
+
+        "select_your_language_&_location" : "Valitse kieli ja sijainti",
+        "your_location" : "Sijaintisi",
+        "select" : "Valitse",
+        "preferred_language" : "Ensisijainen kieli",
+
+
+
+
+
+
+
+
+        "search" : "Hae",
+        "discover_our_clinics" : "Tutustu klinikoihimme",
+        "best_botox_around" : "Paras Botox ympärillä",
+        "whats_new_near_you" : "Mitä uutta lähelläsi",
+        "filler_favourites" : "Täyteainesuosikit",
+        "laser_hair_removal" : "Laser karvanpoisto"
+    }
+}

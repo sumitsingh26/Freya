@@ -6,14 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = () => {
     const navigation = useNavigation();
-    // const [isLoggedIn, setIsLoggedIn] = useState(false);
-    // async function getData() {
-      
-    //   console.log("data : " + data);
-      
-    //   setIsLoggedIn(data);
-      
-    // }
 
   useEffect(() => {
     // getData();
@@ -24,12 +16,6 @@ const SplashScreen = () => {
       const data = await AsyncStorage.getItem('isLoggedIn');
       // Navigate to the Home screen after the splash screen
       {data === "true" ? navigation.replace('Dashboard') : navigation.replace('ChooseSignUpMethod')}
-      // navigation.navigate('ChooseSignUpMethod');
-      // Reset the stack and navigate to 'SecondScreen'
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{ name: 'ChooseSignUpMethod' }],
-    // });
     };
 
     fetchData();

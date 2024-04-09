@@ -1,0 +1,59 @@
+{
+    "translation" : {
+
+        "search_with_google" : "Søg med Google",
+        "continue_with_apple" : "Fortsæt med Apple",
+        "continue_with_email" : "Fortsæt med e-mail",
+        "already_have_an_account" : "har du allerede en bruger",
+        "sign_in_here" : "Log ind her",
+
+
+        "login" : "Log på",
+        "e_mail" : "E-mail",
+        "password" : "Adgangskode",
+        "send_verification_code" : "Send bekræftelseskode",
+
+
+        "choose_your_account" : "Vælg din konto",
+        "first_name" : "Fornavn",
+        "last_name" : "Efternavn",
+        "your_birth_day" : "Din fødselsdag",
+        "gender" : "Køn",
+        "phone_no" : "Telefon Nej.",
+        "sign_up" : "Tilmelde",
+
+
+        "check_your_email" : "Tjek din e-mail",
+        "an_email_with_verification_code_has_been_sent_to_your_email_id_write_the_code_below_to_continue" : "En e-mail med bekræftelseskode er blevet sendt til dit e-mail-id. Skriv koden nedenfor for at fortsætte",
+        "didn't_receive_it_yet" : "Har du ikke modtaget den endnu",
+        "resend_code" : "Gensend kode",
+        "Continue" : "Blive ved",
+
+
+
+        "text_sent" : "Tekst sendt",
+        "a_text_with_verification_code_has_been_sent_to_your_provided_number_write_the_code_below_to_continue" : "En sms med bekræftelseskode er blevet sendt til dit angivne nummer. Skriv koden nedenfor for at fortsætte",
+
+
+
+
+        "select_your_language_&_location" : "Vælg dit sprog og din placering",
+        "your_location" : "Din placering",
+        "select" : "Vælg",
+        "preferred_language" : "foretrukne sprog",
+
+
+
+
+
+
+
+
+        "search" : "Søg",
+        "discover_our_clinics" : "Oplev vores klinikker",
+        "best_botox_around" : "Bedste Botox omkring",
+        "whats_new_near_you" : "Hvad er nyt i nærheden af ​​dig",
+        "filler_favourites" : "Filler favoritter",
+        "laser_hair_removal" : "Laser hårfjerning"
+    }
+}
