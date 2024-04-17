@@ -31,10 +31,6 @@ const CustomButton = () => {
     </View>
     </TouchableOpacity>
     </View>
-    
-
-    
-   
   )
 }
 

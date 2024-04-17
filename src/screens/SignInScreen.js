@@ -1,235 +1,170 @@
-import { ActivityIndicator, ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native'
-import React, { useState } from 'react'
-import { TextInput } from 'react-native-gesture-handler'
-import imagepath from '../images/Images'
-import { useNavigation } from '@react-navigation/native';
-import Toast from 'react-native-toast-message';
-import { loginUser } from './network/Api';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {Alert, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import CustomKeyBoardAvoidingView from '../components/CustomKeyBoardAvoidingView';
+import AppTextInput from '../components/AppTextInput';
+import AppButton from '../components/AppButton';
+import {appEndPoints, appKeys, appScreens, emailRegex} from '../utils/constant';
+import {setStoredValue, showToast} from '../utils/helperFunctions';
+import AppLoader from '../components/AppLoader';
+import {useDispatch, useSelector} from 'react-redux';
+import {loginUser, setUser} from '../redux/features/auth/authSlice';
+import {loginUser1} from './network/Api';
 
 const SignInScreen = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
+  const [email, setEmail] = useState('ranjansumit0000@gmail.com');
+  const [password, setPassword] = useState('12345');
 
-    const [email, setEmail] = useState('');
-    const [isEmailValid, setIsEmailValid] = useState(true);
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.auth.loading);
 
-    const [password, setPassword] = useState('');
-    const [isPasswoedValid, setIsPaswordValid] = useState(true);
+  const validateEmail = () => {
+    if (!emailRegex.test(email)) {
+      showToast({errorMessage: 'Please Enter Valid Email', type: 'error'});
+      return false;
+    }
+    return true;
+  };
 
-    const [errors, setErrors] = useState({});
+  const validatePassword = () => {
+    if (password.length < 3) {
+      showToast({errorMessage: 'Please Enter Valid Password', type: 'error'});
+      return false;
+    }
+    return true;
+  };
 
-    const [modalVisible, setModalVisible] = useState(false);
-    const openModal = () => {
-      setModalVisible(true);
-    };
-  
-    const closeModal = () => {
-      setModalVisible(false);
-    };
-
-    const validate = () => {
-        let errors = {};
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-        if (email == ''){
-            setIsEmailValid(false)
-            setIsPaswordValid(true)
-            Toast.show({
-                type: "error",
-                text1: "Error",
-                text2: "Enter your email id."
-              })
-        }else if (reg.test(email) === false){
-            setIsEmailValid(false)
-            setIsPaswordValid(true)
-            Toast.show({
-                type: "error",
-                text1: "Error",
-                text2: "Enter your valid email id."
-              })
-        }else if (password == ''){
-            setIsPaswordValid(false)
-            setIsEmailValid(true)
-            Toast.show({
-                type: "error",
-                text1: "Error",
-                text2: "Enter your password."
-              })
-        }else{
-            setIsPaswordValid(true)
-            setIsEmailValid(true)
-            setErrors(errors);
-            return Object.keys(errors).length === 0;
-        }
-    };
-
-    const handleSubmit = () => {
-        if (validate()) {
-            openModal();
-            let data = {
-              "email":email,
-              "password":password
-          }
-              console.log(data);
-              let endPoint = "api/auth/user/Login";
-              loginUser(data,endPoint).then((response) => {
-                console.log(response);
-                if (response.Success){
-                  closeModal();
-                  Toast.show({
-                    type: "success",
-                    text1: "Success",
-                    text2: response?.Message
-                  })
-                  console.log("token :" + response.resultData.token);
-                  AsyncStorage.setItem('token',response.resultData.token);
-                  AsyncStorage.setItem('isLoggedIn', "true");
-                  navigation.navigate('Dashboard'); // Navigate to the 'Login' screen
-                }else{
-                  closeModal();
-                  Toast.show({
-                    type: "error",
-                    text1: "Failed",
-                    text2: response?.Message
-                  })
-                }
-        
-              })
-        }
+  const handleSubmit = async () => {
+    if (validateEmail() && validatePassword()) {
+      let params = {
+        email: email,
+        password: password,
       };
+      dispatch(loginUser(params))
+        .unwrap()
+        .then(response => {
+          setStoredValue(appKeys.user, response?.resultData?.usersData);
+          setStoredValue(appKeys.accessToken, response?.resultData?.token);
+          navigation.navigate(appScreens.dashboard);
+        })
+        .catch(error => {
+          // Alert.alert('Error', error.message);
+          console.log({error});
+          showToast({
+            errorMessage: error.message,
+            type: 'error',
+          });
+        });
+    }
+  };
 
-
-    const goToAnotherScreen = async () => {
-      navigation.navigate('SignUpScreen'); // Navigate to the 'Login' screen
-    };
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }}>
-    <ImageBackground style={{width: "100%", height: "100%"}} resizeMode={"cover"} source={imagepath.loginBgImage}>
+    <CustomKeyBoardAvoidingView imageBackground={true}>
+      <View style={styles.rootContainer}>
+        <Text style={styles.loginTxtStyle}>Login</Text>
+        <AppTextInput
+          value={email}
+          required
+          text="Email"
+          placeHolder="Please Enter Email"
+          errorMessage={'Please enter email'}
+          onChangeText={setEmail}
+        />
 
-    <View style={styles.rootContainer}>
-       <Text style={styles.loginTxtStyle}>Login</Text>
-       <Text style={styles.emailTxtStyle}>Email</Text>
-       <TextInput placeholder='Enter email address'
-       style={[styles.textInputStyle, !isEmailValid && styles.invalidInput]}
-       value={email}
-       autoCapitalize="none" 
-       onChangeText={setEmail}
-       keyboardType='email-address'/>
+        <AppTextInput
+          value={password}
+          required
+          text="Password"
+          placeHolder="Please Enter Password"
+          errorMessage={'Please enter Password'}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
 
-       <Text style={styles.emailTxtStyle}>Password</Text>
-       <TextInput placeholder='Enter password'
-       style={[styles.textInputStyle, !isPasswoedValid && styles.invalidInput]}
-       multiline={false}
-       value={password}
-       autoCapitalize="none" 
-       onChangeText={setPassword}/>  
+        <AppButton
+          title="Send Verification Code"
+          primary
+          click={handleSubmit}
+        />
+      </View>
+      {loading === 'pending' ? <AppLoader openModal={true} /> : null}
+    </CustomKeyBoardAvoidingView>
+  );
+};
 
-       <TouchableOpacity onPress={handleSubmit}>
-       <View style={styles.buttonViewStyle}>
-        <Text style={styles.buttonTxtStyle}>Send Verification Code</Text>       
-        </View>  
-       </TouchableOpacity>
-
-       <View style={styles.text2}>
-            <View style={styles.containerTextRow2}>
-              <Text style={styles.text1}>Don't have an accoutn?</Text>
-              <TouchableOpacity onPress={goToAnotherScreen}>
-                <Text style={styles.underlineText}>Sign Up</Text>
-              </TouchableOpacity>
-              <Text style={styles.text1}> here</Text>
-            </View>
-          </View>
-
-          <Modal animationType="fade" visible={modalVisible} onRequestClose={closeModal} transparent={true}>
-            <View style={{ justifyContent: "center", alignItems: "center", flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-              <ActivityIndicator size={'large'} color={'#DED0B6'}/>
-
-            </View>
-          </Modal>
-       
-    </View>
-    </ImageBackground>
-    </KeyboardAvoidingView>
-    
-  )
-}
-
-export default SignInScreen
+export default SignInScreen;
 
 const styles = StyleSheet.create({
-    rootContainer: {
-        flex: 1,
-        justifyContent: "center",
-        padding: "8%"
-    },
-    loginTxtStyle: {
-        fontWeight: "600",
-        fontFamily: "Poppins-Regular",
-        fontSize: 28,
-        color: "white",
-        textAlign: "center"
-    },
-    emailTxtStyle: {
-        fontWeight: "600",
-        fontFamily: "Poppins-Regular",
-        fontSize: 16,
-        color: "white",
-        marginTop: 10
-    },
-    textInputStyle: {
-        backgroundColor: "white",
-        width: "100%",
-        height: 50,
-        borderRadius: 6,
-        marginTop: 10,
-        fontFamily: "Poppins-Regular",
-        paddingHorizontal:10
-
-        
-    },
-    buttonViewStyle: {
-        width: "100%",
-        height: 50,
-        backgroundColor: "#607274",
-        borderRadius: 6,
-        marginTop: 50,
-        justifyContent: "center"
-    },
-    buttonTxtStyle: {
-        fontWeight: "600",
-        fontFamily: "Poppins-Regular",
-        fontSize: 16,
-        color: "white",
-        textAlign: "center"
-    
-    },
-    text2: {
-      justifyContent: "center",
-      alignItems: "center",
-      margin: 20
-    },
-    containerTextRow2: {
-      width: "100%",
-      flexDirection: "row",
-      justifyContent: "center",
-  
-    },
-    text1: {
-      fontSize: 14,
-      color: "#494949",
-      alignItems: "center",
-      fontFamily: "Poppins-Regular",
-    },
-    underlineText: {
-      textDecorationLine: 'underline',
-      fontFamily: "Poppins-Regular",
-      fontSize: 14,
-      color: "#607274",
-      marginLeft: 3
-    },  
-    invalidInput: {
-        borderColor: 'red',
-        borderRadius: 6,
-        borderWidth: 1
-      },
-})
+  rootContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: '8%',
+  },
+  loginTxtStyle: {
+    fontWeight: '600',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 28,
+    color: 'white',
+    textAlign: 'center',
+  },
+  emailTxtStyle: {
+    fontWeight: '600',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 16,
+    color: 'white',
+    marginTop: 10,
+  },
+  textInputStyle: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: 50,
+    borderRadius: 6,
+    marginTop: 10,
+    fontFamily: 'Poppins-Regular',
+    paddingHorizontal: 10,
+  },
+  buttonViewStyle: {
+    width: '100%',
+    height: 50,
+    backgroundColor: '#607274',
+    borderRadius: 6,
+    marginTop: 50,
+    justifyContent: 'center',
+  },
+  buttonTxtStyle: {
+    fontWeight: '600',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 16,
+    color: 'white',
+    textAlign: 'center',
+  },
+  text2: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 20,
+  },
+  containerTextRow2: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  text1: {
+    fontSize: 14,
+    color: '#494949',
+    alignItems: 'center',
+    fontFamily: 'Poppins-Regular',
+  },
+  underlineText: {
+    textDecorationLine: 'underline',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
+    color: '#607274',
+    marginLeft: 3,
+  },
+  invalidInput: {
+    borderColor: 'red',
+    borderRadius: 6,
+    borderWidth: 1,
+  },
+});
