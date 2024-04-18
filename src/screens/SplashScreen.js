@@ -5,22 +5,23 @@ import imagepath from '../images/Images';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {appKeys, appScreens} from '../utils/constant';
 import {getStoredLocal} from '../utils/helperFunctions';
-
+import '../services/i18n/i18n';
+import {changeLanguage} from '../services/i18n/i18n';
 const SplashScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
     const fetchData = async () => {
-      // Simulating a delay of 2 seconds
       await new Promise(resolve => setTimeout(resolve, 4000));
-      const data = await AsyncStorage.getItem(appKeys.accessToken);
+      const data = await getStoredLocal(appKeys.accessToken);
+      const language = await getStoredLocal(appKeys.language);
       {
+        changeLanguage(language);
         data
           ? navigation.replace(appScreens.dashboard)
           : navigation.replace(appScreens.signupMethod);
       }
     };
-
     fetchData();
   }, [navigation]);
   return (

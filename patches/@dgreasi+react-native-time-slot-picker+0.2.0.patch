@@ -145,7 +145,7 @@ index bac891b..c31f53a 100644
          ref={scrollRef}
          showsHorizontalScrollIndicator={false}
 diff --git a/node_modules/@dgreasi/react-native-time-slot-picker/src/components/TimeSlot.tsx b/node_modules/@dgreasi/react-native-time-slot-picker/src/components/TimeSlot.tsx
-index 816a94e..7e0cb6e 100644
+index 816a94e..cfbafd9 100644
 --- a/node_modules/@dgreasi/react-native-time-slot-picker/src/components/TimeSlot.tsx
 +++ b/node_modules/@dgreasi/react-native-time-slot-picker/src/components/TimeSlot.tsx
 @@ -64,8 +64,7 @@ const TimeSlot = ({ value, onPress, selectedTime }: Props) => {
@@ -154,7 +154,7 @@ index 816a94e..7e0cb6e 100644
            styles.container,
 -          { width: timeSlotWidth },
 -          isSelected ? { backgroundColor: mainColor } : styles.unSelected,
-+          { width: timeSlotWidth , backgroundColor : isSelected ? '#F9F9F9' : '' },
++          { width: timeSlotWidth , backgroundColor : isSelected ? '#F9F9F9' : theme.colors.transparent },
          ]}
        >
          <Text

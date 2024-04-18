@@ -6,22 +6,27 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import imagepath from '../images/Images';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {removeStoredValue} from '../utils/helperFunctions';
+import {getStoredLocal, removeStoredValue} from '../utils/helperFunctions';
 import {appKeys, appScreens} from '../utils/constant';
+import LanguageSelectionModal from '../components/LanguageSelectionModal';
 
 const MyProfile = () => {
   const navigation = useNavigation();
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const goToSignInScreen = () => {
     // AsyncStorage.setItem('isLoggedIn', ' ');
     removeStoredValue(appKeys.accessToken);
     removeStoredValue(appKeys.user);
-    navigation.navigate(appScreens.signin);
+    navigation.reset({
+      index: 0,
+      routes: [{name: appScreens.signin}],
+    });
   };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View style={styles.rootContainer}>
@@ -293,30 +298,32 @@ const MyProfile = () => {
                 <View
                   style={{width: '100%', height: 2, backgroundColor: '#EAEAEA'}}
                 />
-                <View
-                  style={{
-                    width: '100%',
-                    height: 50,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}>
-                  <Image
-                    style={{width: 18, height: 16}}
-                    source={imagepath.languageIcon}
-                  />
-                  <Text
+                <TouchableOpacity onPress={() => setIsModalVisible(true)}>
+                  <View
                     style={{
-                      width: 81,
-                      height: 24,
-                      fontWeight: '400',
-                      fontFamily: 'Poppins-Regular',
-                      fontSize: 16,
-                      color: '#494949',
-                      marginLeft: 30,
+                      width: '100%',
+                      height: 50,
+                      flexDirection: 'row',
+                      alignItems: 'center',
                     }}>
-                    Language
-                  </Text>
-                </View>
+                    <Image
+                      style={{width: 18, height: 16}}
+                      source={imagepath.languageIcon}
+                    />
+                    <Text
+                      style={{
+                        width: 81,
+                        height: 24,
+                        fontWeight: '400',
+                        fontFamily: 'Poppins-Regular',
+                        fontSize: 16,
+                        color: '#494949',
+                        marginLeft: 30,
+                      }}>
+                      Language
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               </View>
             </View>
             <TouchableOpacity onPress={goToSignInScreen}>
@@ -351,6 +358,11 @@ const MyProfile = () => {
             </TouchableOpacity>
           </View>
         </ScrollView>
+
+        <LanguageSelectionModal
+          isVisible={isModalVisible}
+          onClose={() => setIsModalVisible(!isModalVisible)}
+        />
       </View>
     </SafeAreaView>
   );
