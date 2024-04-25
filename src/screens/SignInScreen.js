@@ -1,4 +1,4 @@
-import {Alert, StyleSheet, Text, View} from 'react-native';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import CustomKeyBoardAvoidingView from '../components/CustomKeyBoardAvoidingView';
@@ -9,9 +9,11 @@ import {setStoredValue, showToast} from '../utils/helperFunctions';
 import AppLoader from '../components/AppLoader';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginUser, setUser} from '../redux/features/auth/authSlice';
-import {loginUser1} from './network/Api';
+import {LoadingType} from '../services/api/constant';
+import {useTranslation} from 'react-i18next';
 
 const SignInScreen = () => {
+  const {t} = useTranslation();
   const navigation = useNavigation();
   const [email, setEmail] = useState('ranjansumit0000@gmail.com');
   const [password, setPassword] = useState('12345');
@@ -21,7 +23,7 @@ const SignInScreen = () => {
 
   const validateEmail = () => {
     if (!emailRegex.test(email)) {
-      showToast({errorMessage: 'Please Enter Valid Email', type: 'error'});
+      showToast({errorMessage: t('Please Enter Valid Email'), type: 'error'});
       return false;
     }
     return true;
@@ -29,7 +31,10 @@ const SignInScreen = () => {
 
   const validatePassword = () => {
     if (password.length < 3) {
-      showToast({errorMessage: 'Please Enter Valid Password', type: 'error'});
+      showToast({
+        errorMessage: t('Please Enter Valid Password'),
+        type: 'error',
+      });
       return false;
     }
     return true;
@@ -44,51 +49,51 @@ const SignInScreen = () => {
       dispatch(loginUser(params))
         .unwrap()
         .then(response => {
-          setStoredValue(appKeys.user, response?.resultData?.usersData);
-          setStoredValue(appKeys.accessToken, response?.resultData?.token);
+          dispatch(setUser(response));
           navigation.navigate(appScreens.dashboard);
         })
-        .catch(error => {
-          // Alert.alert('Error', error.message);
-          console.log({error});
-          showToast({
-            errorMessage: error.message,
-            type: 'error',
-          });
-        });
+        .catch(error => {});
     }
   };
 
   return (
     <CustomKeyBoardAvoidingView imageBackground={true}>
       <View style={styles.rootContainer}>
-        <Text style={styles.loginTxtStyle}>Login</Text>
+        <Text style={styles.loginTxtStyle}>{t('login')}</Text>
         <AppTextInput
           value={email}
           required
-          text="Email"
-          placeHolder="Please Enter Email"
-          errorMessage={'Please enter email'}
+          text={t('e_mail')}
+          placeHolder={t('Please Enter Email')}
           onChangeText={setEmail}
         />
 
         <AppTextInput
           value={password}
           required
-          text="Password"
-          placeHolder="Please Enter Password"
-          errorMessage={'Please enter Password'}
+          text={t('password')}
+          placeHolder={t('Please Enter Password')}
           onChangeText={setPassword}
           secureTextEntry
         />
 
         <AppButton
-          title="Send Verification Code"
+          title={t('send_verification_code')}
           primary
           click={handleSubmit}
         />
       </View>
-      {loading === 'pending' ? <AppLoader openModal={true} /> : null}
+      <View style={styles.text2}>
+        <View style={styles.containerTextRow2}>
+          <Text style={styles.text1}>{t(`Don't have an account?`)}</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(appScreens.signup)}>
+            <Text style={styles.underlineText}>{t('sign_up')}</Text>
+          </TouchableOpacity>
+          <Text style={styles.text1}> {t('here')}</Text>
+        </View>
+      </View>
+      {loading === LoadingType.pending ? <AppLoader openModal={true} /> : null}
     </CustomKeyBoardAvoidingView>
   );
 };

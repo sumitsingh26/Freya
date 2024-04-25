@@ -11,8 +11,8 @@ import OtpEmailScreen from './src/screens/OtpEmailScreen';
 import OtpMobileScreen from './src/screens/OtpMobileScreen';
 import Dashboard from './src/screens/Dashboard';
 import {Provider} from 'react-redux';
-import {store} from './src/redux/store';
 import {appScreens} from './src/utils/constant';
+import {store} from './src/redux/store';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();

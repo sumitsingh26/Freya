@@ -13,14 +13,17 @@ import {useNavigation} from '@react-navigation/native';
 import {getStoredLocal, removeStoredValue} from '../utils/helperFunctions';
 import {appKeys, appScreens} from '../utils/constant';
 import LanguageSelectionModal from '../components/LanguageSelectionModal';
+import {useDispatch} from 'react-redux';
+import {clearUser} from '../redux/features/auth/authSlice';
+import {useTranslation} from 'react-i18next';
 
 const MyProfile = () => {
+  const {t} = useTranslation();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const goToSignInScreen = () => {
-    // AsyncStorage.setItem('isLoggedIn', ' ');
-    removeStoredValue(appKeys.accessToken);
-    removeStoredValue(appKeys.user);
+    dispatch(clearUser());
     navigation.reset({
       index: 0,
       routes: [{name: appScreens.signin}],
@@ -61,7 +64,7 @@ const MyProfile = () => {
               fontSize: 25,
               color: '#607274',
             }}>
-            My Profile
+            {t('My Profile')}
           </Text>
         </View>
         <View style={{padding: 20}}>
@@ -184,7 +187,7 @@ const MyProfile = () => {
                       color: '#494949',
                       marginLeft: 30,
                     }}>
-                    Account
+                    {t('Account')}
                   </Text>
                 </View>
                 <View
@@ -211,7 +214,7 @@ const MyProfile = () => {
                       color: '#494949',
                       marginLeft: 30,
                     }}>
-                    Bookings
+                    {t('Bookings')}
                   </Text>
                 </View>
                 <View
@@ -238,7 +241,7 @@ const MyProfile = () => {
                       color: '#494949',
                       marginLeft: 30,
                     }}>
-                    Saved Place
+                    {t('Saved Place')}
                   </Text>
                 </View>
                 <View
@@ -265,7 +268,7 @@ const MyProfile = () => {
                       color: '#494949',
                       marginLeft: 30,
                     }}>
-                    Contact Us
+                    {t('Contact Us')}
                   </Text>
                 </View>
                 <View
@@ -292,7 +295,7 @@ const MyProfile = () => {
                       color: '#494949',
                       marginLeft: 30,
                     }}>
-                    Privacy Policy
+                    {t('Privacy Policy')}
                   </Text>
                 </View>
                 <View
@@ -320,7 +323,7 @@ const MyProfile = () => {
                         color: '#494949',
                         marginLeft: 30,
                       }}>
-                      Language
+                      {t('Language')}
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -352,7 +355,7 @@ const MyProfile = () => {
                     color: '#494949',
                     marginLeft: 30,
                   }}>
-                  Logout
+                  {t('Logout')}
                 </Text>
               </View>
             </TouchableOpacity>

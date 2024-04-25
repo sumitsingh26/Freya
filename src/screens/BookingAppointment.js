@@ -21,6 +21,7 @@ import {
 import CustomCornerRectangle from '../components/CustomCornerRectangle';
 import Moment from 'moment';
 import {defaultFormat} from 'moment';
+import {useTranslation} from 'react-i18next';
 
 const locations = [
   {location: 'Botox', value: '1'},
@@ -29,6 +30,7 @@ const locations = [
 ];
 
 const BookingAppointment = () => {
+  const {t} = useTranslation();
   const navigation = useNavigation();
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
@@ -47,9 +49,9 @@ const BookingAppointment = () => {
       <View style={style.container}>
         <View style={style.titleContainer}>
           <View>
-            <Text style={style.titleText}>Date</Text>
+            <Text style={style.titleText}>{t('Date')}</Text>
             <Text style={style.subTitleText}>
-              These are our available dates
+              {t('These_are_our_available_dates')}
             </Text>
           </View>
           <View style={style.calenderIcon}>{calenderIcon}</View>
@@ -72,7 +74,7 @@ const BookingAppointment = () => {
     return (
       <View style={[style.titleContainer, {marginVertical: 20, flex: 1}]}>
         <View style={{flex: 1}}>
-          <Text style={style.titleText}>Your appointment</Text>
+          <Text style={style.titleText}>{t('Your appointment')}</Text>
           <Text style={style.dateText}>
             {Moment(appointmentDate).format('DD dddd')}
           </Text>
@@ -145,7 +147,7 @@ const BookingAppointment = () => {
                     fontSize: 16,
                     textAlign: 'center',
                   }}>
-                  Story
+                  {t('Story')}
                 </Text>
               </View>
               <View>
@@ -176,7 +178,7 @@ const BookingAppointment = () => {
                     fontSize: 16,
                     textAlign: 'center',
                   }}>
-                  Booking Appointment
+                  {t('Booking Appointment')}
                 </Text>
               </View>
 
@@ -208,7 +210,7 @@ const BookingAppointment = () => {
                           fontSize: 22,
                           textAlign: 'center',
                         }}>
-                        10 Years
+                        10 {t('Years')}
                       </Text>
                       <Text
                         style={{
@@ -220,7 +222,7 @@ const BookingAppointment = () => {
                           fontSize: 14,
                           textAlign: 'center',
                         }}>
-                        Exprience
+                        {t('Experience')}
                       </Text>
                     </View>
                   </View>
@@ -261,7 +263,7 @@ const BookingAppointment = () => {
                           fontSize: 14,
                           textAlign: 'center',
                         }}>
-                        Clients
+                        {t('Clients')}
                       </Text>
                     </View>
                     <View
@@ -322,7 +324,7 @@ const BookingAppointment = () => {
                             textAlign: 'center',
                             marginLeft: 3,
                           }}>
-                          reviews
+                          {t('reviews')}
                         </Text>
                       </View>
                     </View>
@@ -342,7 +344,7 @@ const BookingAppointment = () => {
                 fontFamily: 'Poppins-Regular',
                 fontSize: 18,
               }}>
-              Select Treatments
+              {t('Select Treatments')}
             </Text>
             <View style={{marginHorizontal: 20, marginTop: 10}}>
               <View
@@ -380,9 +382,9 @@ const BookingAppointment = () => {
                   placeholder={
                     !isFocus
                       ? 'Select from our 70 different treatments'
-                      : 'Select'
+                      : t('select')
                   }
-                  searchPlaceholder="Search..."
+                  searchPlaceholder={t('search')}
                   value={value}
                   onFocus={() => setIsFocus(true)}
                   onBlur={() => setIsFocus(false)}

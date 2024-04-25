@@ -1,38 +1,63 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
-import React from 'react'
+import {View, Text, Image, StyleSheet} from 'react-native';
+import React from 'react';
 import imagepath from '../../images/Images';
+import {useTranslation} from 'react-i18next';
 
-const HomeLaserHair = ({ item }) => {
+const HomeLaserHair = ({item}) => {
+  const {t} = useTranslation();
   return (
-
     <View style={styles.card}>
       <Image style={styles.image} source={item.image} />
       <View style={styles.cardContent}>
-        <Text numberOfLines={2} style={styles.clinicContainer}>{item.clinic_name}</Text>
-        <View style={{ height: "100%", marginLeft: 40, flexDirection: "column", marginTop: 15 }}>
+        <Text numberOfLines={2} style={styles.clinicContainer}>
+          {item.clinic_name}
+        </Text>
+        <View
+          style={{
+            height: '100%',
+            marginLeft: 40,
+            flexDirection: 'column',
+            marginTop: 15,
+          }}>
           <Text style={styles.clientValue}>{item.clients}</Text>
-          <Text style={styles.clientsTxt}>Clients</Text>
+          <Text style={styles.clientsTxt}>{t('Clients')}</Text>
         </View>
-        <View style={{ height: "100%", marginLeft: 20, flexDirection: "column", marginTop: 15 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+        <View
+          style={{
+            height: '100%',
+            marginLeft: 20,
+            flexDirection: 'column',
+            marginTop: 15,
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
             <Text style={styles.clientValue}>{item.rating}</Text>
-            <Image style={{ width: 11, height: 11, marginLeft: 5 }} source={imagepath.ratingStarImage} />
+            <Image
+              style={{width: 11, height: 11, marginLeft: 5}}
+              source={imagepath.ratingStarImage}
+            />
           </View>
 
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
             <Text style={styles.clientsTxt}>{item.reviewTxt}</Text>
-            <Text style={[styles.clientsTxt, { marginLeft: 3 }]}>reviews</Text>
+            <Text style={[styles.clientsTxt, {marginLeft: 3}]}></Text>
           </View>
-
         </View>
       </View>
     </View>
+  );
+};
 
-
-  )
-}
-
-export default HomeLaserHair
+export default HomeLaserHair;
 
 const styles = StyleSheet.create({
   card: {
@@ -47,37 +72,33 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 120,
-
   },
   cardContent: {
     width: '100%',
     height: '100%',
-    backgroundColor: "#DED0B6",
+    backgroundColor: '#DED0B6',
     flexDirection: 'row',
-
   },
   clinicContainer: {
     width: 80,
     height: 50,
-    fontWeight: "600",
-    fontFamily: "Poppins-Bold",
+    fontWeight: '600',
+    fontFamily: 'Poppins-Bold',
     fontSize: 15,
-    color: "white",
+    color: 'white',
     marginTop: 12,
     marginLeft: 15,
-
-
   },
   clientsTxt: {
-    fontWeight: "400",
-    fontFamily: "Poppins-Regular",
+    fontWeight: '400',
+    fontFamily: 'Poppins-Regular',
     fontSize: 10,
-    color: "black",
+    color: 'black',
   },
   clientValue: {
-    fontWeight: "600",
-    fontFamily: "Poppins-Bold",
+    fontWeight: '600',
+    fontFamily: 'Poppins-Bold',
     fontSize: 12,
-    color: "white",
-  }
-})
+    color: 'white',
+  },
+});

@@ -1,59 +1,94 @@
 {
-    "translation" : {
-        "search_with_google" : "Hae Googlella",
-        "continue_with_apple" : "Jatka Applella",
-        "continue_with_email" : "Jatka sähköpostilla",
-        "already_have_an_account" : "Onko sinulla jo tili",
-        "sign_in_here" : "Kirjaudu sisään tästä",
+  "translation": {
+    "search_with_google": "Hae Googlella",
+    "continue_with_apple": "Jatka Applella",
+    "continue_with_email": "Jatka sähköpostilla",
+    "already_have_an_account": "Onko sinulla jo tili",
+    "sign_in_here": "Kirjaudu sisään tästä",
 
+    "login": "Kirjaudu sisään",
+    "e_mail": "Sähköposti",
+    "password": "Salasana",
+    "send_verification_code": "Lähetä vahvistuskoodi",
 
-        "login" : "Kirjaudu sisään",
-        "e_mail" : "Sähköposti",
-        "password" : "Salasana",
-        "send_verification_code" : "Lähetä vahvistuskoodi",
+    "choose_your_account": "Valitse tilisi",
+    "first_name": "Etunimi",
+    "last_name": "Sukunimi",
+    "your_birth_day": "Sinun syntymäpäiväsi",
+    "gender": "Sukupuoli",
+    "phone_no": "Puhelin ei.",
+    "sign_up": "Kirjaudu",
 
+    "check_your_email": "Tarkista sähköpostisi",
+    "an_email_with_verification_code_has_been_sent_to_your_email_id_write_the_code_below_to_continue": "Sähköpostitunnukseesi on lähetetty vahvistuskoodin sisältävä sähköposti. Kirjoita alla oleva koodi jatkaaksesi",
+    "didn't_receive_it_yet": "Etkö ole vielä saanut sitä",
+    "resend_code": "Lähetä koodi uudelleen",
+    "Continue": "Jatkaa",
 
-        "choose_your_account" : "Valitse tilisi",
-        "first_name" : "Etunimi",
-        "last_name" : "Sukunimi",
-        "your_birth_day" : "Sinun syntymäpäiväsi",
-        "gender" : "Sukupuoli",
-        "phone_no" : "Puhelin ei.",
-        "sign_up" : "Kirjaudu",
+    "text_sent": "Teksti lähetetty",
+    "a_text_with_verification_code_has_been_sent_to_your_provided_number_write_the_code_below_to_continue": "Vahvistuskoodin sisältävä tekstiviesti on lähetetty antamaasi numeroon. Kirjoita alla oleva koodi jatkaaksesi",
 
+    "select_your_language_&_location": "Valitse kieli ja sijainti",
+    "your_location": "Sijaintisi",
+    "select": "Valitse",
+    "preferred_language": "Ensisijainen kieli",
 
+    "search": "Hae",
+    "discover_our_clinics": "Tutustu klinikoihimme",
+    "best_botox_around": "Paras Botox ympärillä",
+    "whats_new_near_you": "Mitä uutta lähelläsi",
+    "filler_favourites": "Täyteainesuosikit",
+    "laser_hair_removal": "Laser karvanpoisto",
 
-        "check_your_email" : "Tarkista sähköpostisi",
-        "an_email_with_verification_code_has_been_sent_to_your_email_id_write_the_code_below_to_continue" : "Sähköpostitunnukseesi on lähetetty vahvistuskoodin sisältävä sähköposti. Kirjoita alla oleva koodi jatkaaksesi",
-        "didn't_receive_it_yet" : "Etkö ole vielä saanut sitä",
-        "resend_code" : "Lähetä koodi uudelleen",
-        "Continue" : "Jatkaa",
+    "These_are_our_available_dates": "Dette er våre tilgjengelige datoer",
+    "Your appointment": "Sinun tapaaminen",
+    "Date": "Päivämäärä",
+    "Story": "Tarina",
+    "Booking Appointment": "Ajanvaraus",
+    "Years": "Vuodet",
+    "Select Treatments": "Valitse hoidot",
+    "reviews": "arvostelut",
 
+    "Already have an account?": "Onko sinulla jo tili?",
+    "By continuing the process, you're to Freya's": "Jatkamalla prosessia, olet Freya's",
+    "Terms & Conditions": "Ehdot ja edellytykset",
+    "and": "ja",
+    "Privacy Policy": "Tietosuojakäytäntö",
 
+    "Away": "Poissa",
 
-        "text_sent" : "Teksti lähetetty",
-        "a_text_with_verification_code_has_been_sent_to_your_provided_number_write_the_code_below_to_continue" : "Vahvistuskoodin sisältävä tekstiviesti on lähetetty antamaasi numeroon. Kirjoita alla oleva koodi jatkaaksesi",
+    "Edit My Profile": "Muokkaa profiiliani",
+    "Change my photo": "Vaihda kuvani",
+    "Name": "Nimi",
+    "City": "Kaupunki",
+    "Save Changes": "Tallenna muutokset",
 
+    "My Profile": "Oma profiili",
+    "Account": "Tili",
+    "Bookings": "Varaukset",
+    "Saved Place": "Tallennettu paikka",
+    "Contact Us": "Ota yhteyttä",
+    "Language": "Kieli",
+    "Logout": "Kirjaudu ulos",
 
+    "here": "täällä",
 
+    "Text Sent": "Teksti lähetetty!",
+    "A Text with verification code has been sent to your provided number. Write the code below to continue.": "Vahvistuskoodin sisältävä tekstiviesti on lähetetty antamaasi numeroon. Kirjoita alla oleva koodi jatkaaksesi",
 
-        "select_your_language_&_location" : "Valitse kieli ja sijainti",
-        "your_location" : "Sijaintisi",
-        "select" : "Valitse",
-        "preferred_language" : "Ensisijainen kieli",
+    "Please Enter Email": "Anna sähköpostiosoite",
+    "Please Enter Password": "Anna salasana",
+    "Please Enter Valid Email": "Syötä voimassa oleva sähköpostiosoite",
+    "Please Enter Valid Password": "Syötä voimassa oleva salasana",
 
+    "Create Your Account": "Luo tilisi",
+    "Next": "Seuraava",
+    "Sign in": "Kirjaudu sisään",
+    "Select Your": "Valitse",
+    "Language and Location": "Kieli ja sijainti",
 
-
-
-
-
-
-
-        "search" : "Hae",
-        "discover_our_clinics" : "Tutustu klinikoihimme",
-        "best_botox_around" : "Paras Botox ympärillä",
-        "whats_new_near_you" : "Mitä uutta lähelläsi",
-        "filler_favourites" : "Täyteainesuosikit",
-        "laser_hair_removal" : "Laser karvanpoisto"
-    }
+    "Experience": "Kokemus",
+    "Clients": "Asiakkaat",
+    "Select from our 70 different treatments": "Valitse 70 eri hoidon joukosta"
+  }
 }

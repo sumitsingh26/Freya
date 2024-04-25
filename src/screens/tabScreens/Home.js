@@ -4,28 +4,32 @@ import {
   Text,
   View,
   Dimensions,
-  FlatList,
   TextInput,
-  Animated,
   TouchableOpacity,
-  SafeAreaView,
 } from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
 import imagepath from '../../images/Images';
-import HomeBestBotoxCard from '../cardScreens/HomeBestBotoxCard';
 import {ScrollView} from 'react-native-gesture-handler';
-import HomeNewNearYouCard from '../cardScreens/HomeNewNearYouCard';
-import HomeFillerFav from '../cardScreens/HomeFillerFav';
-import HomeLaserHair from '../cardScreens/HomeLaserHair';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 import AppImageSlider from '../../components/AppImageSlider';
+import {useDispatch, useSelector} from 'react-redux';
+import AppLoader from '../../components/AppLoader';
+import {LoadingType} from '../../services/api/constant';
+import AppBotoxListView from '../../components/AppBotoxListView';
+import CustomKeyBoardAvoidingView from '../../components/CustomKeyBoardAvoidingView';
+import CustomNavBar from '../../components/CustomNavBar';
 
 const Home = () => {
   const {t} = useTranslation();
-
-  const screenWidth = Dimensions.get('window').width;
+  const dispatch = useDispatch();
   const navigation = useNavigation();
+  const {loading} = useSelector(state => state.home);
+
+  useEffect(() => {
+    // dispatch(fetchGetHomeApiData());
+  }, [dispatch]);
+
   const images = [
     {
       id: '1',
@@ -33,10 +37,9 @@ const Home = () => {
     },
     {
       id: '2',
-      image: imagepath.sliderImage,
+      image: imagepath.bestBotoxImage,
     },
   ];
-
   const bestBotox = [
     {
       id: '1',
@@ -63,7 +66,6 @@ const Home = () => {
       rating: '5.0',
     },
   ];
-
   const newNearYou = [
     {
       id: '1',
@@ -142,77 +144,13 @@ const Home = () => {
       rating: '5.0',
     },
   ];
-  const renderItem = ({item}) => <HomeBestBotoxCard item={item} />;
-  const renderItemNewNear = ({item}) => <HomeNewNearYouCard item={item} />;
-  const renderFillerFav = ({item}) => <HomeFillerFav item={item} />;
-  const renderLaserHair = ({item}) => <HomeLaserHair item={item} />;
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const animatedScroll = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
-    }, 3000); // Adjust interval as needed
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleSnapTo = index => {
-    Animated.spring(animatedScroll, {
-      toValue: index * screenWidth,
-      useNativeDriver: true,
-    }).start();
-  };
 
   return (
     <View style={styles.rootContainer}>
-      <SafeAreaView>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 39,
-            alignItems: 'center',
-            marginHorizontal: 15,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center ',
-            }}>
-            <View style={[styles.searchContainer, {justifyContent: 'center'}]}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Image
-                  style={{width: 17, height: 17, marginLeft: 100}}
-                  source={imagepath.searchIcon}
-                />
-                <TextInput
-                  placeholder={t('search')}
-                  placeholderTextColor={'white'}
-                  style={styles.searchTextContainer}
-                />
-              </View>
-            </View>
-          </View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('MyProfile');
-            }}>
-            <Image
-              style={{width: 40, height: 40}}
-              source={imagepath.profileImage}
-              marginLeft={true}
-            />
-          </TouchableOpacity>
-        </View>
-
-        <ScrollView style={{marginTop: 10}}>
+      {loading === LoadingType.pending ? <AppLoader openModal={true} /> : null}
+      <CustomNavBar isFirstScreen={true} />
+      <CustomKeyBoardAvoidingView>
+        <ScrollView>
           <View style={styles.titleContainer}>
             <Text style={styles.titleTextContainer}>
               {t('discover_our_clinics')}
@@ -261,115 +199,27 @@ const Home = () => {
           </View>
 
           <AppImageSlider slides={images} />
-          <View style={{flexDirection: 'column', marginHorizontal: 15}}>
-            <Text
-              style={{
-                fontWeight: '600',
-                fontFamily: 'Poppins-Bold',
-                fontSize: 18,
-                color: '#607274',
-                padding: 5,
-                marginLeft: 10,
-                marginTop: 10,
-              }}>
-              {t('best_botox_around')} 💉
-            </Text>
-
-            <FlatList
-              horizontal
-              keyExtractor={index => {
-                return index.id;
-              }}
-              data={bestBotox}
-              renderItem={renderItem}
-              showsHorizontalScrollIndicator={false}></FlatList>
-          </View>
-
-          <View>
-            <Image
-              style={styles.mapContainer}
-              source={imagepath.googleMapImage}
-            />
-            <View
-              style={{
-                position: 'absolute',
-                marginLeft: 20,
-                marginTop: 20,
-                flexDirection: 'column',
-              }}>
-              <Text
-                style={{
-                  fontWeight: '600',
-                  fontFamily: 'Poppins-Bold',
-                  fontSize: 18,
-                  color: '#607274',
-                  marginLeft: 14,
-                  marginTop: 10,
-                }}>
-                {t('whats_new_near_you')} ✨
-              </Text>
-              <FlatList
-                horizontal
-                keyExtractor={index => {
-                  return index.id;
-                }}
-                data={newNearYou}
-                renderItem={renderItemNewNear}
-                showsHorizontalScrollIndicator={false}></FlatList>
-            </View>
-          </View>
-          <View style={{flexDirection: 'column', marginHorizontal: 15}}>
-            <Text
-              style={{
-                fontWeight: '600',
-                fontFamily: 'Poppins-Bold',
-                fontSize: 18,
-                color: '#607274',
-                padding: 5,
-                marginTop: 10,
-              }}>
-              ✨{t('filler_favourites')}💉
-            </Text>
-
-            <FlatList
-              horizontal
-              keyExtractor={index => {
-                return index.id;
-              }}
-              data={fillerFav}
-              renderItem={renderFillerFav}
-              showsHorizontalScrollIndicator={false}></FlatList>
-          </View>
-          <View style={{flexDirection: 'column', marginHorizontal: 15}}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text
-                style={{
-                  fontWeight: '600',
-                  fontFamily: 'Poppins-Bold',
-                  fontSize: 18,
-                  color: '#607274',
-                  padding: 5,
-                  marginTop: 10,
-                }}>
-                {t('laser_hair_removal')}
-              </Text>
-              <Image
-                style={{width: 42, height: 22, marginTop: 8}}
-                source={imagepath.laserIcon}
-              />
-            </View>
-
-            <FlatList
-              horizontal
-              keyExtractor={index => {
-                return index.id;
-              }}
-              data={laserHair}
-              renderItem={renderLaserHair}
-              showsHorizontalScrollIndicator={false}></FlatList>
-          </View>
+          <AppBotoxListView
+            name={`${t('best_botox_around')} 💉`}
+            data={bestBotox}
+          />
+          <AppBotoxListView
+            name={`${t('whats_new_near_you')} ✨`}
+            data={newNearYou}
+            isNearMeBotox={true}
+            onPress={() => navigation.navigate('ClinicsDetailsScreen')}
+          />
+          <AppBotoxListView
+            name={`✨ ${t('filler_favourites')} 💉`}
+            data={fillerFav}
+          />
+          <AppBotoxListView
+            name={`${t('laser_hair_removal')}`}
+            data={laserHair}
+            iconSource={imagepath.laserIcon}
+          />
         </ScrollView>
-      </SafeAreaView>
+      </CustomKeyBoardAvoidingView>
     </View>
   );
 };

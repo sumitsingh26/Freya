@@ -1,59 +1,93 @@
 {
-    "translation" : {
+  "translation": {
+    "search_with_google": "Søg med Google",
+    "continue_with_apple": "Fortsæt med Apple",
+    "continue_with_email": "Fortsæt med e-mail",
+    "already_have_an_account": "har du allerede en bruger",
+    "sign_in_here": "Log ind her",
 
-        "search_with_google" : "Søg med Google",
-        "continue_with_apple" : "Fortsæt med Apple",
-        "continue_with_email" : "Fortsæt med e-mail",
-        "already_have_an_account" : "har du allerede en bruger",
-        "sign_in_here" : "Log ind her",
+    "login": "Log på",
+    "e_mail": "E-mail",
+    "password": "Adgangskode",
+    "send_verification_code": "Send bekræftelseskode",
 
+    "choose_your_account": "Vælg din konto",
+    "first_name": "Fornavn",
+    "last_name": "Efternavn",
+    "your_birth_day": "Din fødselsdag",
+    "gender": "Køn",
+    "phone_no": "Telefon Nej.",
+    "sign_up": "Tilmelde",
 
-        "login" : "Log på",
-        "e_mail" : "E-mail",
-        "password" : "Adgangskode",
-        "send_verification_code" : "Send bekræftelseskode",
+    "check_your_email": "Tjek din e-mail",
+    "an_email_with_verification_code_has_been_sent_to_your_email_id_write_the_code_below_to_continue": "En e-mail med bekræftelseskode er blevet sendt til dit e-mail-id. Skriv koden nedenfor for at fortsætte",
+    "didn't_receive_it_yet": "Har du ikke modtaget den endnu",
+    "resend_code": "Gensend kode",
+    "Continue": "Blive ved",
 
+    "text_sent": "Tekst sendt",
+    "a_text_with_verification_code_has_been_sent_to_your_provided_number_write_the_code_below_to_continue": "En sms med bekræftelseskode er blevet sendt til dit angivne nummer. Skriv koden nedenfor for at fortsætte",
 
-        "choose_your_account" : "Vælg din konto",
-        "first_name" : "Fornavn",
-        "last_name" : "Efternavn",
-        "your_birth_day" : "Din fødselsdag",
-        "gender" : "Køn",
-        "phone_no" : "Telefon Nej.",
-        "sign_up" : "Tilmelde",
+    "select_your_language_&_location": "Vælg dit sprog og din placering",
+    "your_location": "Din placering",
+    "select": "Vælg",
+    "preferred_language": "foretrukne sprog",
 
+    "search": "Søg",
+    "discover_our_clinics": "Oplev vores klinikker",
+    "best_botox_around": "Bedste Botox omkring",
+    "whats_new_near_you": "Hvad er nyt i nærheden af ​​dig",
+    "filler_favourites": "Filler favoritter",
+    "laser_hair_removal": "Laser hårfjerning",
 
-        "check_your_email" : "Tjek din e-mail",
-        "an_email_with_verification_code_has_been_sent_to_your_email_id_write_the_code_below_to_continue" : "En e-mail med bekræftelseskode er blevet sendt til dit e-mail-id. Skriv koden nedenfor for at fortsætte",
-        "didn't_receive_it_yet" : "Har du ikke modtaget den endnu",
-        "resend_code" : "Gensend kode",
-        "Continue" : "Blive ved",
+    "These_are_our_available_dates": "Her er vores ledige datoer",
+    "Your appointment": "Din aftale",
+    "Date": "Dato",
+    "Story": "Historie",
+    "Booking Appointment": "Booker en aftale",
+    "Years": "Booker og aftale",
+    "Select Treatments": "Vælg behandlinger",
+    "reviews": "anmeldelser",
 
+    "Already have an account?": "Har du allerede en konto?",
+    "By continuing the process, you're to Freya's": "Ved at fortsætte processen er du til Freyas",
+    "Terms & Conditions": "Vilkår og betingelser",
+    "and": "og",
+    "Privacy Policy": "Fortrolighedspolitik",
 
+    "Away": "Away",
 
-        "text_sent" : "Tekst sendt",
-        "a_text_with_verification_code_has_been_sent_to_your_provided_number_write_the_code_below_to_continue" : "En sms med bekræftelseskode er blevet sendt til dit angivne nummer. Skriv koden nedenfor for at fortsætte",
+    "Edit My Profile": "Rediger min profil",
+    "Change my photo": "Skift mit foto",
+    "Name": "Navn",
+    "City": "By",
+    "Save Changes": "Gem ændringer",
 
+    "My Profile": "Min profil",
+    "Account": "Konto",
+    "Bookings": "Bestillinger",
+    "Saved Place": "Gemte steder",
+    "Contact Us": "Kontakt os",
+    "Language": "Sprog",
+    "Logout": "Log ud",
 
+    "here": "her",
 
+    "Text Sent": "Tekst sendt!",
+    "A Text with verification code has been sent to your provided number. Write the code below to continue.": "En sms med bekræftelseskode er blevet sendt til dit angivne nummer. Skriv koden nedenfor for at fortsætte",
+    "Please Enter Email": "Indtast venligst e-mail",
+    "Please Enter Password": "Indtast venligst adgangskode",
+    "Please Enter Valid Email": "Indtast venligst gyldig e-mail",
+    "Please Enter Valid Password": "Indtast venligst gyldig adgangskode",
 
-        "select_your_language_&_location" : "Vælg dit sprog og din placering",
-        "your_location" : "Din placering",
-        "select" : "Vælg",
-        "preferred_language" : "foretrukne sprog",
+    "Create Your Account": "Opret din konto",
+    "Next": "Næste",
+    "Sign in": "Log ind",
+    "Select Your": "Vælg din",
+    "Language and Location": "Sprog og beliggenhed",
 
-
-
-
-
-
-
-
-        "search" : "Søg",
-        "discover_our_clinics" : "Oplev vores klinikker",
-        "best_botox_around" : "Bedste Botox omkring",
-        "whats_new_near_you" : "Hvad er nyt i nærheden af ​​dig",
-        "filler_favourites" : "Filler favoritter",
-        "laser_hair_removal" : "Laser hårfjerning"
-    }
+    "Experience": "Erfaring",
+    "Clients": "Klienter",
+    "Select from our 70 different treatments": "Vælg mellem vores 70 forskellige behandlinger"
+  }
 }

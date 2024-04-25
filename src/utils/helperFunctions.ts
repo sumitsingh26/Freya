@@ -3,7 +3,6 @@ import Toast, {ToastType} from 'react-native-toast-message';
 
 export async function setStoredValue(key: string, value: any) {
   try {
-    console.log('====================================');
     await AsyncStorage.setItem(key, JSON.stringify(value));
   } catch (e) {
     // save error
@@ -27,16 +26,6 @@ export const getStoredLocal = async (key: string) => {
     console.error('Error retrieving data:', error);
   }
 };
-
-// export async function getStoredLocal(key: string) {
-//   try {
-//     const data = await AsyncStorage.getItem(key);
-//     return JSON.parse(data);
-//   } catch (e) {
-//     // read error
-//     console.log('error from catch getting async data : ', e);
-//   }
-// }
 
 export async function removeStoredValue(key: string) {
   try {

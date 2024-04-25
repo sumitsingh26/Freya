@@ -1,60 +1,94 @@
 {
-    "translation" : {
-        "search_with_google" : "Søk med Google",
-        "continue_with_apple" : "CFortsett med Apple",
-        "continue_with_email" : "Fortsett med e-post",
-        "already_have_an_account" : "Har du allerede en konto",
-        "sign_in_here" : "Logg på her",
+  "translation": {
+    "search_with_google": "Søk med Google",
+    "continue_with_apple": "CFortsett med Apple",
+    "continue_with_email": "Fortsett med e-post",
+    "already_have_an_account": "Har du allerede en konto",
+    "sign_in_here": "Logg på her",
 
+    "login": "Logg Inn",
+    "e_mail": "E-post",
+    "password": "Passord",
+    "send_verification_code": "Send bekreftelseskode",
 
-        "login" : "Logg Inn",
-        "e_mail" : "E-post",
-        "password" : "Passord",
-        "send_verification_code" : "Send bekreftelseskode",
+    "choose_your_account": "Velg din konto",
+    "first_name": "Fornavn",
+    "last_name": "Etternavn",
+    "your_birth_day": "Bursdagen din",
+    "gender": "Kjønn",
+    "phone_no": "Telefonnr.",
+    "sign_up": "Melde deg på",
 
+    "check_your_email": "Sjekk e-posten",
+    "an_email_with_verification_code_has_been_sent_to_your_email_id_write_the_code_below_to_continue": "En e-post med bekreftelseskode er sendt til din e-post-ID. Skriv koden nedenfor for å fortsette",
+    "didn't_receive_it_yet": "Ikke mottatt den ennå",
+    "resend_code": "Send kode på nytt",
+    "Continue": "Fortsette",
 
-        "choose_your_account" : "Velg din konto",
-        "first_name" : "Fornavn",
-        "last_name" : "Etternavn",
-        "your_birth_day" : "Bursdagen din",
-        "gender" : "Kjønn",
-        "phone_no" : "Telefonnr.",
-        "sign_up" : "Melde deg på",
+    "text_sent": "Tekst sendt",
+    "a_text_with_verification_code_has_been_sent_to_your_provided_number_write_the_code_below_to_continue": "En tekstmelding med bekreftelseskode er sendt til nummeret du har oppgitt. Skriv koden nedenfor for å fortsette",
 
+    "select_your_language_&_location": "Velg ditt språk og plassering",
+    "your_location": "Posisjonen din",
+    "select": "Plukke ut",
+    "preferred_language": "Foretrukket Språk",
 
+    "search": "Søk",
+    "discover_our_clinics": "Oppdag våre klinikker",
+    "best_botox_around": "Beste Botox rundt",
+    "whats_new_near_you": "Hva er nytt i nærheten av deg",
+    "filler_favourites": "Filler Favoritter",
+    "laser_hair_removal": "Hårfjerning med laser",
 
-        "check_your_email" : "Sjekk e-posten",
-        "an_email_with_verification_code_has_been_sent_to_your_email_id_write_the_code_below_to_continue" : "En e-post med bekreftelseskode er sendt til din e-post-ID. Skriv koden nedenfor for å fortsette",
-        "didn't_receive_it_yet" : "Ikke mottatt den ennå",
-        "resend_code" : "Send kode på nytt",
-        "Continue" : "Fortsette",
+    "These_are_our_available_dates": "Dette er våre tilgjengelige datoer",
+    "Your appointment": "Din avtale",
+    "Date": "Dato",
+    "Story": "Historie",
+    "Booking Appointment": "Bestilling av time",
+    "Years": "År",
+    "Select Treatments": "Velg behandlinger",
+    "reviews": "anmeldelser",
 
+    "Already have an account?": "Har du allerede en konto?",
+    "By continuing the process, you're to Freya's": "Ved å fortsette prosessen, er du til Freyas",
+    "Terms & Conditions": "Vilkår og betingelser",
+    "and": "og",
+    "Privacy Policy": "Retningslinjer for personvern",
 
+    "Away": "Borte",
 
-        "text_sent" : "Tekst sendt",
-        "a_text_with_verification_code_has_been_sent_to_your_provided_number_write_the_code_below_to_continue" : "En tekstmelding med bekreftelseskode er sendt til nummeret du har oppgitt. Skriv koden nedenfor for å fortsette",
+    "Edit My Profile": "Rediger min profil",
+    "Change my photo": "Endre bildet mitt",
+    "Name": "Navn",
+    "City": "By",
+    "Save Changes": "Lagre endringer",
 
+    "My Profile": "Min profil",
+    "Account": "Konto",
+    "Bookings": "Bestillinger",
+    "Saved Place": "Lagret sted",
+    "Contact Us": "Kontakt oss",
+    "Language": "Språk",
+    "Logout": "Logg ut",
 
+    "here": "her",
 
+    "Text Sent": "Tekst sendt!",
+    "A Text with verification code has been sent to your provided number. Write the code below to continue.": "En tekstmelding med bekreftelseskode er sendt til nummeret du har oppgitt. Skriv koden nedenfor for å fortsette",
 
-        "select_your_language_&_location" : "Velg ditt språk og plassering",
-        "your_location" : "Posisjonen din",
-        "select" : "Plukke ut",
-        "preferred_language" : "Foretrukket Språk",
+    "Please Enter Email": "Vennligst skriv inn e-post",
+    "Please Enter Password": "Vennligst skriv inn passord",
+    "Please Enter Valid Email": "Vennligst skriv inn gyldig e-post",
+    "Please Enter Valid Password": "Vennligst skriv inn gyldig passord",
 
+    "Create Your Account": "Opprett kontoen din",
+    "Next": "Neste",
+    "Sign in": "Logg inn",
+    "Select Your": "Velg din",
+    "Language and Location": "Språk og beliggenhet",
 
-
-
-
-
-
-
-        "search" : "Søk",
-        "discover_our_clinics" : "Oppdag våre klinikker",
-        "best_botox_around" : "Beste Botox rundt",
-        "whats_new_near_you" : "Hva er nytt i nærheten av deg",
-        "filler_favourites" : "Filler Favoritter",
-        "laser_hair_removal" : "Hårfjerning med laser"
-  
-    }
+    "Experience": "Erfaring",
+    "Clients": "Kunder",
+    "Select from our 70 different treatments": "Velg blant våre 70 forskjellige behandlinger"
+  }
 }
