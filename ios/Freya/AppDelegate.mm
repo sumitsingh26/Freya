@@ -19,13 +19,13 @@
   return [self getBundleURL];
 }
 
-- (NSURL *)getBundleURL
-{
-#if DEBUG
-  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
-#else
-  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-#endif
+
+- (NSURL *)getBundleURL {
+    #ifdef DEBUG
+        return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
+    #else
+        return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+    #endif
 }
 
 @end

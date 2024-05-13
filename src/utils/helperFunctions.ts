@@ -13,14 +13,10 @@ export const getStoredLocal = async (key: string) => {
   try {
     const data = await AsyncStorage.getItem(key);
     if (data !== null) {
-      // Data exists
-      console.log('Data:', data);
       return JSON.parse(data);
-      // Parse data if necessary (data is stored as a string)
-      // const parsedData = JSON.parse(data);
     } else {
       // Data doesn't exist
-      console.log('No data found');
+      return null;
     }
   } catch (error) {
     console.error('Error retrieving data:', error);

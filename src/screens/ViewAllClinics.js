@@ -8,16 +8,24 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
-import React from 'react';
+import React, {useRef} from 'react';
 import imagepath from '../images/Images';
 import {ScrollView} from 'react-native-gesture-handler';
 import ClinicDetailsCard from './cardScreens/ClinicDetailsCard';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
+import AppNavBar from '../components/AppNavBar';
+import AppSearchBar from '../components/AppSearchBar';
+import {globalFontStyle, globalStyle} from '../utils/styles';
+import {appColors} from '../utils/constant';
+import AppBottomSheetContent from '../components/AppBottomSheetContent';
+import AppFilterView from '../components/AppFilterView';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const ClinicsDetailsScreen = () => {
+const ViewAllClinics = () => {
   const {t} = useTranslation();
   const navigation = useNavigation();
+  const bottomSheetRef = useRef();
   const clinicList = [
     {
       id: '1',
@@ -51,67 +59,27 @@ const ClinicsDetailsScreen = () => {
     },
   ];
   const renderItem = ({item}) => <ClinicDetailsCard item={item} />;
+  const openFilterView = () => {
+    console.log('tapped...');
+    bottomSheetRef.current?.open();
+  };
+
+  const closeFilterView = () => {
+    bottomSheetRef.current?.close();
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={styles.rootContainer}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 20,
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <Image
-              style={{width: 50, height: 50, marginHorizontal: 10}}
-              source={imagepath.backButtonImage}
-              marginLeft={true}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('MyProfile');
-            }}>
-            <Image
-              style={{width: 40, height: 40, marginRight: 25}}
-              source={imagepath.profileImage}
-              marginLeft={true}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.searchContainer}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Image
-              style={{width: 17, height: 17}}
-              source={imagepath.searchIcon}
-            />
-            <TextInput
-              placeholder={t('search')}
-              placeholderTextColor={'white'}
-              style={styles.searchTextContainer}
-            />
-          </View>
-        </View>
-        {/* <ScrollView style={{marginTop: 10}}> */}
+      <AppNavBar />
+      <ScrollView
+        style={{marginHorizontal: 20}}
+        showsVerticalScrollIndicator={false}>
+        <AppSearchBar />
         <View style={styles.titleContainer}>
-          <Text style={styles.titleTextContainer}>
+          <Text style={styles.titleTextContainer} numberOfLines={1}>
             {t('whats_new_near_you')}✨
           </Text>
-          <View
-            style={{
-              width: '25%',
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              marginTop: 10,
-            }}>
-            <View>
+
+            {/* <TouchableOpacity onPress={() => openFilterView()}>
               <Image
                 style={{width: 32, height: 32, resizeMode: 'cover'}}
                 source={imagepath.bgRound}
@@ -126,23 +94,30 @@ const ClinicsDetailsScreen = () => {
                 }}
                 source={imagepath.filterIcon}
               />
-            </View>
-          </View>
+            </TouchableOpacity> */}
+            <Icon
+              color={ appColors.TextPrimary}
+              name={'options-outline'}
+              size={20}
+              style={globalStyle.round}
+            />
         </View>
         <FlatList
-          style={{marginTop: 20}}
+          scrollEnabled={false}
           keyExtractor={index => {
             return index.id;
           }}
           data={clinicList}
           renderItem={renderItem}></FlatList>
-        {/* </ScrollView> */}
-      </View>
+      </ScrollView>
+      <AppBottomSheetContent ref={bottomSheetRef}>
+        <AppFilterView onClose={closeFilterView} />
+      </AppBottomSheetContent>
     </SafeAreaView>
   );
 };
 
-export default ClinicsDetailsScreen;
+export default ViewAllClinics;
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -166,18 +141,16 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   titleContainer: {
+    flex : 1,
     flexDirection: 'row',
-    width: '100%',
-    alignItems: 'center',
-    marginTop: 20,
-    marginLeft: 15,
+    justifyContent: 'space-between',
+    marginVertical: 10,
   },
   titleTextContainer: {
-    width: 240,
-    fontWeight: '700',
-    fontFamily: 'Poppins-Regular',
-    fontSize: 24,
-    color: '#607274',
-    marginLeft: 10,
+    flex: 1,
+    ...globalFontStyle(24, '700', appColors.Primary).text,
   },
+  icon: {
+
+  }
 });

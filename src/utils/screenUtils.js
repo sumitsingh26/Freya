@@ -17,15 +17,6 @@ export const deviceHeight = Dimensions.get('window').height;
 export const scaleIpadWidth = size => (deviceWidth / iPadWidth) * size;
 export const scaleIpadHeight = size => (deviceHeight / iPadHeight) * size;
 
-export const isNotch =
-  Platform.OS === 'ios' &&
-  !Platform.isPad &&
-  !Platform.isTVOS &&
-  (deviceHeight === 812 ||
-    deviceWidth === 812 ||
-    deviceHeight === 896 ||
-    deviceWidth === 896);
-
 /*
  * width ,paddingHorizontal ,paddingLeft ,paddingRight ,marginHorizontal ,marginLeft ,marginRight
  * @param size
@@ -70,9 +61,8 @@ export function scaleFontSize(size, allowFontScaling = true) {
  * @param ignoreAndroid  return 0 on android if set true
  */
 export function getStatusBarHeight(ignoreAndroid = false) {
-  console.log({isNotch});
   return Platform.select({
-    ios: isNotch ? 44 : 20,
+    ios: hasNotch() ? 44 : 20,
     android: ignoreAndroid ? 0 : StatusBar.currentHeight,
     default: 0,
   });
@@ -96,3 +86,21 @@ export function getAndroidScreenHeight() {
 }
 
 export const isAndroid = () => Platform.OS === 'android';
+
+export const hasNotch = () => {
+  // Check if the device is iOS
+  if (Platform.OS === 'ios') {
+    // Check if the device is iPhone X or later (which typically have a notch)
+    return (
+      Dimensions.get('window').height >= 812 && // iPhone X, XS, 11 Pro
+      !Platform.isPad && // Exclude iPad
+      !Platform.isTVOS && // Exclude TVOS
+      !Platform.isMacCatalyst // Exclude Mac Catalyst
+    );
+  } else {
+    // Check if the device uses Android and has a notch (may vary based on device)
+    return (
+      StatusBar.currentHeight && StatusBar.currentHeight > 24 // Typical notch height on Android devices
+    );
+  }
+};

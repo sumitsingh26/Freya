@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import imagepath from '../images/Images';
 
-const CustomCornerRectangle = ({content }) => {
+const AppCornerRectangle = ({content}) => {
   return (
     <View style={{height: 138, width: 109}}>
       <Image
@@ -45,6 +45,6 @@ const CustomCornerRectangle = ({content }) => {
   );
 };
 
-export default CustomCornerRectangle;
+export default AppCornerRectangle;
 
 const styles = StyleSheet.create({});

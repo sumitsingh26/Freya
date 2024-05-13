@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Image, FlatList, StyleSheet, Dimensions, Animated } from 'react-native';
+import { View, Image, FlatList, StyleSheet, Dimensions, Animated, Text } from 'react-native';
 import { appColors } from '../utils/constant';
+import { AppExtraButtons } from './AppButton';
+import { scaleHeight } from '../utils/screenUtils';
+import { BlurView } from '@react-native-community/blur';
+import { globalFontStyle } from '../utils/styles';
 
 const { width } = Dimensions.get('window');
 
-const AppImageSlider = ({ slides }) => {
+const AppImageSlider = ({ slides, extraButtons, showPagination }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const flatListRef = useRef(null);
 
@@ -28,15 +32,17 @@ const AppImageSlider = ({ slides }) => {
                 {slides.map((_, index) => (
                     <Animated.View
                         key={index}
-                        style={[styles.paginationDot, { opacity: index === currentIndex ? 1 : 0.3 }]}
+                        style={[styles.paginationDot, {
+                            backgroundColor: index === currentIndex ? appColors.Primary : appColors.Secondary,
+                        }]}
                     />
                 ))}
-            </View>
+            </View >
         );
     };
 
     return (
-        <View style={{ marginVertical: 10 }}>
+        <View >
             <FlatList
                 ref={flatListRef}
                 data={slides}
@@ -56,34 +62,42 @@ const AppImageSlider = ({ slides }) => {
                 bounces={false}
                 style={styles.container}
             />
-            {/* {pagination()} */}
+            {!showPagination &&
+                <BlurView
+                    style={{ paddingHorizontal: 15, padding: 10, position: 'absolute', right: 15, bottom: 15, borderRadius: 5 }}
+                    blurType='light'
+                >
+                    <Text style={globalFontStyle(14, '300', appColors.TextPrimary).centerText}>{`${currentIndex} / ${slides?.length}`} Photos</Text>
+                </BlurView>}
+            {extraButtons && <AppExtraButtons ButtonList={extraButtons} />}
+            {showPagination && pagination()}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        marginHorizontal: 25,
+        // flex: 1,
+        // marginHorizontal: 25,
         borderRadius: 10,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        marginVertical: 5
     },
     image: {
-        width: width - 30,
-        height: 200, // Adjust height as needed
+        width: width,
+        height: scaleHeight(244),
         resizeMode: 'cover',
     },
     paginationContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 10
+        paddingBottom: 15,
     },
     paginationDot: {
         width: 8,
         height: 8,
         borderRadius: 4,
-        marginHorizontal: 5,
-        backgroundColor: appColors.Primary,
+        margin: 5
     },
 });
 

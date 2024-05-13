@@ -29,6 +29,6 @@ export default i18n;
 
 export const changeLanguage = lng => {
   i18n.changeLanguage(lng).then(data => {
-    setStoredValue(appKeys.language, lng);
+    setStoredValue(appKeys.language, lng ? lng : 'en');
   });
 };

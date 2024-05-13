@@ -5,47 +5,38 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from './tabScreens/Home';
 // import AI from './tabScreens/AI';
 import imagepath from '../images/Images';
-import ClinicsDetailsScreen from './ClinicsDetailsScreen';
+import ViewAllClinics from './ViewAllClinics';
 import BookingAppointment from './BookingAppointment';
 import MyProfile from './MyProfile';
 import EditProfile from './EditProfile';
+import {hasNotch, scaleSize} from '../utils/screenUtils';
+import {appColors, appScreens} from '../utils/constant';
+import ClinicDetailsScreen from './ClinicDetailsScreen';
 
 const RenderTabBarIcon = props => {
   const {lable, isFocused, active_tab_icon, inactive_tab_icon} = props;
 
   return (
     <View
-      style={{
-        flex: 1,
-        width: 25,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}>
-      {isFocused ? (
-        <View
-          style={{
-            width: 25,
-            height: 5,
-            backgroundColor: '#DED0B6',
-            borderRadius: 5,
-          }}></View>
-      ) : null}
+      style={[
+        {
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        isFocused
+          ? {
+              borderTopWidth: 5,
+              borderBottomWidth: 5,
+              borderColor: appColors.Secondary,
+            }
+          : {},
+      ]}>
       <Image
         style={style.tabIconCrate}
         resizeMode={'contain'}
         source={isFocused ? active_tab_icon : inactive_tab_icon}
       />
-
-      {isFocused ? (
-        <View
-          style={{
-            width: 25,
-            height: 5,
-            backgroundColor: '#DED0B6',
-            borderRadius: 5,
-            marginTop: 14,
-          }}></View>
-      ) : null}
     </View>
   );
 };
@@ -54,13 +45,13 @@ function HomeScreen() {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
-        name="Home"
+        name={appScreens.home}
         component={Home}
         options={{headerShown: false}}
       />
       <HomeStack.Screen
-        name="ClinicsDetailsScreen"
-        component={ClinicsDetailsScreen}
+        name={appScreens.viewAllClinics}
+        component={ViewAllClinics}
         options={{headerShown: false}}
       />
       <HomeStack.Screen
@@ -73,6 +64,16 @@ function HomeScreen() {
         component={EditProfile}
         options={{headerShown: false}}
       />
+      <HomeStack.Screen
+        name={appScreens.clinicDetails}
+        component={ClinicDetailsScreen}
+        options={{headerShown: false}}
+      />
+      <HomeStack.Screen
+        name={appScreens.bookingAppointment}
+        component={BookingAppointment}
+        options={{headerShown: false}}
+      />
     </HomeStack.Navigator>
   );
 }
@@ -83,7 +84,7 @@ function AppointmentScreen() {
     <AppointmentStack.Navigator>
       {/* <AppointmentStack.Screen name="Appointment" component={Appointment} options={{ headerShown: false, }} /> */}
       <HomeStack.Screen
-        name="BookingAppointment"
+        name={appScreens.bookingAppointment}
         component={BookingAppointment}
         options={{headerShown: false}}
       />
@@ -132,64 +133,58 @@ const Tab = createBottomTabNavigator();
 const Dashboard = props => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'flex-end',
-          marginBottom: '1%',
-          backgroundColor: 'white',
+      <Tab.Navigator
+        initialRouteName="HomeScreen"
+        screenOptions={{
+          headerShown: false,
+          tabBarShowLabel: false,
+          tabBarStyle: {
+            height: 65,
+            marginHorizontal: scaleSize(25),
+            borderRadius: 40,
+            backgroundColor: appColors.Primary,
+            marginTop: 10,
+            marginBottom: !hasNotch() ? 10 : 0,
+          },
+          tabBarItemStyle: {
+            height: 65,
+          },
         }}>
-        <Tab.Navigator
-          initialRouteName="HomeScreen"
-          screenOptions={{
-            headerShown: false,
-            tabBarStyle: {
-              width: '90%',
-              height: 69,
-              backgroundColor: '#607274',
-              borderRadius: 40,
-              elevation: 5,
-              marginLeft: 16,
-              justifyContent: 'space-evenly',
+        <Tab.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: ({focused}) => {
+              return (
+                <RenderTabBarIcon
+                  isFocused={focused}
+                  active_tab_icon={imagepath.activeHomeIcon}
+                  inactive_tab_icon={imagepath.homeIcon}
+                />
+              );
             },
-          }}>
-          <Tab.Screen
-            name="HomeScreen"
-            component={HomeScreen}
-            options={{
-              tabBarLabel: '',
-              tabBarIcon: ({focused}) => {
-                return (
-                  <RenderTabBarIcon
-                    isFocused={focused}
-                    lable=""
-                    active_tab_icon={imagepath.activeHomeIcon}
-                    inactive_tab_icon={imagepath.homeIcon}
-                  />
-                );
-              },
-            }}
-          />
+          }}
+        />
 
-          <Tab.Screen
-            name="AppointmentScreen"
-            component={AppointmentScreen}
-            options={{
-              tabBarLabel: '',
-              tabBarIcon: ({focused}) => {
-                return (
-                  <RenderTabBarIcon
-                    isFocused={focused}
-                    lable=""
-                    active_tab_icon={imagepath.activeAppointmentIcon}
-                    inactive_tab_icon={imagepath.appointmentIcon}
-                  />
-                );
-              },
-            }}
-          />
+        <Tab.Screen
+          name="AppointmentScreen"
+          component={AppointmentScreen}
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: ({focused}) => {
+              return (
+                <RenderTabBarIcon
+                  isFocused={focused}
+                  active_tab_icon={imagepath.activeAppointmentIcon}
+                  inactive_tab_icon={imagepath.appointmentIcon}
+                />
+              );
+            },
+          }}
+        />
 
-          {/* <Tab.Screen
+        {/* <Tab.Screen
           name="AIScreen"
           component={AIScreen}
           options={{
@@ -207,25 +202,23 @@ const Dashboard = props => {
           }}
         /> */}
 
-          <Tab.Screen
-            name="PersionScreen"
-            component={PersionScreen}
-            options={{
-              tabBarLabel: '',
-              tabBarIcon: ({focused}) => {
-                return (
-                  <RenderTabBarIcon
-                    isFocused={focused}
-                    lable=""
-                    active_tab_icon={imagepath.activePersonIcon}
-                    inactive_tab_icon={imagepath.persionIcon}
-                  />
-                );
-              },
-            }}
-          />
-        </Tab.Navigator>
-      </View>
+        <Tab.Screen
+          name="PersionScreen"
+          component={PersionScreen}
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: ({focused}) => {
+              return (
+                <RenderTabBarIcon
+                  isFocused={focused}
+                  active_tab_icon={imagepath.activePersonIcon}
+                  inactive_tab_icon={imagepath.persionIcon}
+                />
+              );
+            },
+          }}
+        />
+      </Tab.Navigator>
     </SafeAreaView>
   );
 };
@@ -233,7 +226,6 @@ const style = StyleSheet.create({
   tabIconCrate: {
     width: 30,
     height: 30,
-    marginTop: 14,
   },
 });
 export default Dashboard;

@@ -15,9 +15,10 @@ import {TextInput} from 'react-native-gesture-handler';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import {otpMobile} from './network/Api';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useTranslation} from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {appColors} from '../utils/constant';
 
 const OtpMobileScreen = () => {
   const {t} = useTranslation();
@@ -309,7 +310,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     fontWeight: '700',
     fontSize: 14,
-    color: '#494949',
+    color: appColors.Text,
     marginLeft: 3,
   },
   underlineText: {
@@ -321,7 +322,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     fontSize: 14,
-    color: '#494949',
+    color: appColors.Text,
     alignItems: 'center',
     fontFamily: 'Poppins-Regular',
   },

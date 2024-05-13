@@ -1,47 +1,36 @@
-import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import CustomKeyBoardAvoidingView from '../components/CustomKeyBoardAvoidingView';
+import AppKeyBoardAvoidingView from '../components/AppKeyBoardAvoidingView';
 import AppTextInput from '../components/AppTextInput';
 import AppButton from '../components/AppButton';
-import {appEndPoints, appKeys, appScreens, emailRegex} from '../utils/constant';
-import {setStoredValue, showToast} from '../utils/helperFunctions';
+import {appColors, appScreens} from '../utils/constant';
 import AppLoader from '../components/AppLoader';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginUser, setUser} from '../redux/features/auth/authSlice';
 import {LoadingType} from '../services/api/constant';
 import {useTranslation} from 'react-i18next';
+import {validateEmail, validatePassword} from '../utils/validationFunctions';
+import {globalFontStyle} from '../utils/styles';
 
 const SignInScreen = () => {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [email, setEmail] = useState('ranjansumit0000@gmail.com');
-  const [password, setPassword] = useState('12345');
-
+  const [password, setPassword] = useState('');
+  const [showErrorInField, setShowErrorInField] = useState(false);
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
 
-  const validateEmail = () => {
-    if (!emailRegex.test(email)) {
-      showToast({errorMessage: t('Please Enter Valid Email'), type: 'error'});
-      return false;
-    }
-    return true;
-  };
-
-  const validatePassword = () => {
-    if (password.length < 3) {
-      showToast({
-        errorMessage: t('Please Enter Valid Password'),
-        type: 'error',
-      });
-      return false;
-    }
-    return true;
-  };
-
   const handleSubmit = async () => {
-    if (validateEmail() && validatePassword()) {
+    if (
+      validateEmail(email, t('Please Enter Valid Email')) &&
+      validatePassword(
+        password,
+        t('Password must contain at least 8 character and 1 special character'),
+      )
+    ) {
+      setShowErrorInField(false);
       let params = {
         email: email,
         password: password,
@@ -49,15 +38,22 @@ const SignInScreen = () => {
       dispatch(loginUser(params))
         .unwrap()
         .then(response => {
+          console.log({response});
           dispatch(setUser(response));
-          navigation.navigate(appScreens.dashboard);
+          // navigation.navigate(appScreens.dashboard);
+          navigation.reset({
+            index: 0,
+            routes: [{name: appScreens.dashboard}],
+          });
         })
         .catch(error => {});
+    } else {
+      setShowErrorInField(true);
     }
   };
 
   return (
-    <CustomKeyBoardAvoidingView imageBackground={true}>
+    <AppKeyBoardAvoidingView imageBackground={true}>
       <View style={styles.rootContainer}>
         <Text style={styles.loginTxtStyle}>{t('login')}</Text>
         <AppTextInput
@@ -66,6 +62,8 @@ const SignInScreen = () => {
           text={t('e_mail')}
           placeHolder={t('Please Enter Email')}
           onChangeText={setEmail}
+          errorMessage={t('Please Enter Valid Email')}
+          showError={showErrorInField && !validateEmail(email, '')}
         />
 
         <AppTextInput
@@ -74,27 +72,28 @@ const SignInScreen = () => {
           text={t('password')}
           placeHolder={t('Please Enter Password')}
           onChangeText={setPassword}
-          secureTextEntry
+          isPassword
+          errorMessage={t(
+            'Password must contain at least 8 character and 1 special character',
+          )}
+          showError={showErrorInField && !validatePassword(password, '')}
         />
 
-        <AppButton
-          title={t('send_verification_code')}
-          primary
-          click={handleSubmit}
-        />
-      </View>
-      <View style={styles.text2}>
-        <View style={styles.containerTextRow2}>
-          <Text style={styles.text1}>{t(`Don't have an account?`)}</Text>
-          <TouchableOpacity
+        <AppButton title={t('Sign in')} primary click={handleSubmit} />
+        <Text style={styles.text1}>
+          {t(`Don't have an account?`)}{' '}
+          <Text
+            style={styles.underlineText}
             onPress={() => navigation.navigate(appScreens.signup)}>
-            <Text style={styles.underlineText}>{t('sign_up')}</Text>
-          </TouchableOpacity>
+            {t('sign_up')}
+          </Text>
           <Text style={styles.text1}> {t('here')}</Text>
-        </View>
+        </Text>
+        {loading === LoadingType.pending ? (
+          <AppLoader openModal={true} />
+        ) : null}
       </View>
-      {loading === LoadingType.pending ? <AppLoader openModal={true} /> : null}
-    </CustomKeyBoardAvoidingView>
+    </AppKeyBoardAvoidingView>
   );
 };
 
@@ -104,72 +103,16 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     justifyContent: 'center',
-    padding: '8%',
+    marginHorizontal: 15,
   },
   loginTxtStyle: {
-    fontWeight: '600',
-    fontFamily: 'Poppins-Regular',
-    fontSize: 28,
-    color: 'white',
-    textAlign: 'center',
-  },
-  emailTxtStyle: {
-    fontWeight: '600',
-    fontFamily: 'Poppins-Regular',
-    fontSize: 16,
-    color: 'white',
-    marginTop: 10,
-  },
-  textInputStyle: {
-    backgroundColor: 'white',
-    width: '100%',
-    height: 50,
-    borderRadius: 6,
-    marginTop: 10,
-    fontFamily: 'Poppins-Regular',
-    paddingHorizontal: 10,
-  },
-  buttonViewStyle: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#607274',
-    borderRadius: 6,
-    marginTop: 50,
-    justifyContent: 'center',
-  },
-  buttonTxtStyle: {
-    fontWeight: '600',
-    fontFamily: 'Poppins-Regular',
-    fontSize: 16,
-    color: 'white',
-    textAlign: 'center',
-  },
-  text2: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 20,
-  },
-  containerTextRow2: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    ...globalFontStyle(28, '600', appColors.TextPrimary).centerText,
   },
   text1: {
-    fontSize: 14,
-    color: '#494949',
-    alignItems: 'center',
-    fontFamily: 'Poppins-Regular',
+    ...globalFontStyle(14, '400', appColors.Text).centerText,
   },
   underlineText: {
     textDecorationLine: 'underline',
-    fontFamily: 'Poppins-Regular',
-    fontSize: 14,
-    color: '#607274',
-    marginLeft: 3,
-  },
-  invalidInput: {
-    borderColor: 'red',
-    borderRadius: 6,
-    borderWidth: 1,
+    ...globalFontStyle(14, '400', appColors.Primary).centerText,
   },
 });

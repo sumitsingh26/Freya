@@ -9,7 +9,7 @@ import React from 'react';
 import imagepath from '../images/Images';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-const CustomKeyBoardAvoidingView = ({imageBackground, children}) => {
+const AppKeyBoardAvoidingView = ({imageBackground, children}) => {
   return imageBackground ? (
     <ImageBackground
       style={{width: '100%', height: '100%'}}
@@ -28,7 +28,7 @@ const CustomKeyBoardAvoidingView = ({imageBackground, children}) => {
   );
 };
 
-export default CustomKeyBoardAvoidingView;
+export default AppKeyBoardAvoidingView;
 
 const styles = StyleSheet.create({
   container: {},

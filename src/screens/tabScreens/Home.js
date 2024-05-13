@@ -17,8 +17,23 @@ import {useDispatch, useSelector} from 'react-redux';
 import AppLoader from '../../components/AppLoader';
 import {LoadingType} from '../../services/api/constant';
 import AppBotoxListView from '../../components/AppBotoxListView';
-import CustomKeyBoardAvoidingView from '../../components/CustomKeyBoardAvoidingView';
-import CustomNavBar from '../../components/CustomNavBar';
+import AppKeyBoardAvoidingView from '../../components/AppKeyBoardAvoidingView';
+import AppNavBar from '../../components/AppNavBar';
+import {
+  appColors,
+  tmpBotoxData,
+  tmpFilterData,
+  tmpImageSliderData,
+  tmpLaserIPLData,
+  tmpNearYouData,
+} from '../../utils/constant';
+import AppFilterView from '../../components/AppFilterView';
+import {scaleHeight, scaleSize} from '../../utils/screenUtils';
+import AppBottomSheetContent from '../../components/AppBottomSheetContent';
+import {globalStyle} from '../../utils/styles';
+const _ = require('lodash');
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 const Home = () => {
   const {t} = useTranslation();
@@ -26,200 +41,75 @@ const Home = () => {
   const navigation = useNavigation();
   const {loading} = useSelector(state => state.home);
 
+  const bottomSheetRef = useRef();
+
+  const openFilterView = () => {
+    bottomSheetRef.current?.open();
+  };
+
+  const closeFilterView = () => {
+    bottomSheetRef.current?.close();
+  };
+
   useEffect(() => {
     // dispatch(fetchGetHomeApiData());
   }, [dispatch]);
 
-  const images = [
-    {
-      id: '1',
-      image: imagepath.sliderImage,
-    },
-    {
-      id: '2',
-      image: imagepath.bestBotoxImage,
-    },
-  ];
-  const bestBotox = [
-    {
-      id: '1',
-      image: imagepath.bestBotoxImage,
-      clinic_name: 'Story',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-    {
-      id: '2',
-      image: imagepath.fillerImage,
-      clinic_name: 'Sisu Clinic',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-    {
-      id: '3',
-      image: imagepath.newNearImage,
-      clinic_name: 'SMR \n Aesthetics',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-  ];
-  const newNearYou = [
-    {
-      id: '1',
-      image: imagepath.newNearImage,
-      clinic_name: 'SMR\nAesthetics',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-    {
-      id: '2',
-      image: imagepath.bestBotoxImage,
-      clinic_name: 'Story',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-    {
-      id: '3',
-      image: imagepath.newNearImage,
-      clinic_name: 'SMR \n Aesthetics',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-  ];
-  const fillerFav = [
-    {
-      id: '1',
-      image: imagepath.fillerImage,
-      clinic_name: 'Sisu Clinic',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-    {
-      id: '2',
-      image: imagepath.laserImage,
-      clinic_name: 'Copenhagen\nCosmetics',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-    {
-      id: '3',
-      image: imagepath.newNearImage,
-      clinic_name: 'SMR \n Aesthetics',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-  ];
-  const laserHair = [
-    {
-      id: '1',
-      image: imagepath.laserImage,
-      clinic_name: 'Copenhagen\nCosmetics',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-    {
-      id: '2',
-      image: imagepath.bestBotoxImage,
-      clinic_name: 'Story',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-    {
-      id: '3',
-      image: imagepath.newNearImage,
-      clinic_name: 'SMR \n Aesthetics',
-      clients: '1000+',
-      reviewTxt: '121',
-      rating: '5.0',
-    },
-  ];
-
   return (
-    <View style={styles.rootContainer}>
+    <View style={globalStyle.screenContainer}>
       {loading === LoadingType.pending ? <AppLoader openModal={true} /> : null}
-      <CustomNavBar isFirstScreen={true} />
-      <CustomKeyBoardAvoidingView>
+      <AppNavBar isFirstScreen={true} />
+      <AppKeyBoardAvoidingView>
         <ScrollView>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleTextContainer}>
+            <Text style={styles.titleTextContainer} numberOfLines={1}>
               {t('discover_our_clinics')}
             </Text>
-            <View
-              style={{
-                width: '25%',
-                flexDirection: 'row',
-                justifyContent: 'flex-end',
-                marginTop: 10,
-              }}>
-              <View style={{marginRight: 10}}>
-                <Image
-                  style={{width: 32, height: 32, resizeMode: 'cover'}}
-                  source={imagepath.bgRound}
-                />
-                <Image
-                  style={{
-                    width: 13.21,
-                    height: 16.94,
-                    position: 'absolute',
-                    marginLeft: 9,
-                    marginTop: 4,
-                  }}
-                  source={imagepath.locationWhiteIcon}
-                />
-              </View>
+           
+                 <Icon
+              color={ appColors.TextPrimary}
+              name={'location'}
+              size={20}
+                style={[globalStyle.round , {marginHorizontal : 5}]}
+                onPress={openFilterView}
+              />
 
-              <View>
-                <Image
-                  style={{width: 32, height: 32, resizeMode: 'cover'}}
-                  source={imagepath.bgRound}
-                />
-                <Image
-                  style={{
-                    width: 13.21,
-                    height: 16.94,
-                    position: 'absolute',
-                    marginLeft: 9,
-                    marginTop: 4,
-                  }}
-                  source={imagepath.filterIcon}
-                />
-              </View>
-            </View>
+              <Icon
+              color={ appColors.TextPrimary}
+              name={'options-outline'}
+              size={20}
+                style={globalStyle.round}
+                onPress={openFilterView}
+              />
           </View>
-
-          <AppImageSlider slides={images} />
+          <View
+            style={{ marginHorizontal: scaleSize(15) }}
+          >
+            <AppImageSlider slides={tmpImageSliderData} showPagination={true} />
+          </View>
           <AppBotoxListView
             name={`${t('best_botox_around')} 💉`}
-            data={bestBotox}
+            data={_.shuffle(tmpNearYouData)}
           />
           <AppBotoxListView
             name={`${t('whats_new_near_you')} ✨`}
-            data={newNearYou}
+            data={_.shuffle(tmpNearYouData)}
             isNearMeBotox={true}
-            onPress={() => navigation.navigate('ClinicsDetailsScreen')}
           />
           <AppBotoxListView
             name={`✨ ${t('filler_favourites')} 💉`}
-            data={fillerFav}
+            data={_.shuffle(tmpNearYouData)}
           />
           <AppBotoxListView
             name={`${t('laser_hair_removal')}`}
-            data={laserHair}
+           data={_.shuffle(tmpNearYouData)}
             iconSource={imagepath.laserIcon}
           />
         </ScrollView>
-      </CustomKeyBoardAvoidingView>
+      </AppKeyBoardAvoidingView>
+      <AppBottomSheetContent ref={bottomSheetRef}>
+        <AppFilterView onClose={closeFilterView} />
+      </AppBottomSheetContent>
     </View>
   );
 };
@@ -246,18 +136,14 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flexDirection: 'row',
-    width: '100%',
-    alignItems: 'center',
-    marginTop: 20,
-    marginLeft: 15,
+    marginHorizontal: 15,
   },
   titleTextContainer: {
-    width: 240,
     fontWeight: '600',
     fontFamily: 'Poppins-Bold',
     fontSize: 24,
     color: '#607274',
-    marginLeft: 10,
+    flex : 1
   },
 
   image: {

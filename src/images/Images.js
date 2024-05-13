@@ -61,5 +61,10 @@ const imagepath = {
   half_rectangle: require('../../assets/images/half_rectangle.png'),
   round_frame: require('../../assets/images/Round_Frame.png'),
   subtrack_rectangle: require('../../assets/images/Subtract.png'),
+  ic_english: require('../../assets/images/ic_english.png'),
+  ic_finnish: require('../../assets/images/ic_finnish.png'),
+  ic_norwegian: require('../../assets/images/ic_norwegian.png'),
+  ic_swedish: require('../../assets/images/ic_swedish.png'),
+  ic_danish: require('../../assets/images/ic_danish.png'),
 };
 export default imagepath;

@@ -5,39 +5,60 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
+  TextInput,
 } from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
 import imagepath from '../images/Images';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Dropdown} from 'react-native-element-dropdown';
 import {useNavigation} from '@react-navigation/native';
-import {appColors} from '../utils/constant';
+import {appColors, appScreens, tmpImageSliderData} from '../utils/constant';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   IAppointment,
   IAvailableDates,
   TimeSlotPicker,
 } from '@dgreasi/react-native-time-slot-picker';
-import CustomCornerRectangle from '../components/CustomCornerRectangle';
+import AppCornerRectangle from '../components/AppCornerRectangle';
 import Moment from 'moment';
 import {defaultFormat} from 'moment';
 import {useTranslation} from 'react-i18next';
+import AppButton, {AppExtraButtons} from '../components/AppButton';
+import AppSelectionModal from '../components/AppSelectionModal';
+import AppKeyBoardAvoidingView from '../components/AppKeyBoardAvoidingView';
+import {globalFontStyle, globalStyle} from '../utils/styles';
+import AppNavBar from '../components/AppNavBar';
+import AppImageSlider from '../components/AppImageSlider';
+import {
+  deviceWidth,
+  scaleFontSize,
+  scaleHeight,
+  scaleSize,
+} from '../utils/screenUtils';
+import {AppRatingTextView} from '../components/AppBotoxListView';
+import AppBlurredOverlay from '../components/AppBlurredOverlay';
+import LottieView from 'lottie-react-native';
+import appLottie from '../images/lotties';
+import ZigzagView from 'react-native-zigzag-view';
+import DashedLine from '../components/DashLine';
 
 const locations = [
-  {location: 'Botox', value: '1'},
-  {location: 'Hair Removal', value: '2'},
-  {location: 'Filler', value: '3'},
+  {label: 'Botox', value: '1'},
+  {label: 'Hair Removal', value: '2'},
+  {label: 'Filler', value: '3'},
 ];
 
 const BookingAppointment = () => {
   const {t} = useTranslation();
   const navigation = useNavigation();
-  const [value, setValue] = useState(null);
+  const [treatmentValue, setTreatmentValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  const [description, setDescription] = useState(null);
   const [dateOfAppointment, setDateOfAppointment] = useState({
     appointmentDate: '',
     appointmentTime: '',
   });
+  const [appointmentStatus, setAppointmentStatus] = useState('');
 
   const customCalenderView = () => {
     const style = calenderStyle;
@@ -60,6 +81,7 @@ const BookingAppointment = () => {
           setDateOfAppointment={setDateOfAppointment}
           timeSlotsBackgroundColor={appColors.Secondary}
           mainColor={appColors.Secondary}
+          datePickerBackgroundColor={'transparent'}
         />
         {selectedAppointmentDetails()}
       </View>
@@ -84,322 +106,294 @@ const BookingAppointment = () => {
           <Text style={style.timeText}>{appointmentTime}</Text>
         </View>
 
-        <CustomCornerRectangle content={Moment(appointmentDate).format('DD')} />
+        <AppCornerRectangle content={Moment(appointmentDate).format('DD')} />
       </View>
     );
   }, [dateOfAppointment]);
 
-  return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.rootContainer}>
+  const renderSelectTreatment = () => {
+    return (
+      <View style={{marginVertical: scaleSize(10)}}>
+        <Text style={[globalStyle.font18500]}>{t('Select Treatments')}</Text>
+        <View style={{marginTop: 10}}>
+          <AppSelectionModal
+            data={locations}
+            value={treatmentValue}
+            placeholder={t('Select from our 70 different treatments')}
+            shadow
+            onChangeValue={item => {
+              console.log({item});
+              setTreatmentValue(item);
+              setIsFocus(false);
+            }}
+          />
+        </View>
+      </View>
+    );
+  };
+
+  const renderDescriptionView = () => {
+    return (
+      <View style={styles.container}>
+        <Text style={[globalStyle.font18500, {color: appColors.Primary}]}>
+          Brief your concern
+        </Text>
+
+        <TextInput
+          style={styles.input}
+          value={description}
+          onChangeText={text => setDescription(text)}
+          multiline={true}
+        />
+      </View>
+    );
+  };
+
+  const renderHighLightedView = () => {
+    return (
+      <View style={highlightedStyle.container}>
+        <View
+          style={[
+            globalStyle.rowCenterContent,
+            {
+              marginVertical: 10,
+              backgroundColor: 'white',
+            },
+          ]}>
+          <Image
+            style={{
+              width: scaleSize(50),
+              height: scaleSize(50),
+              marginLeft: 10,
+            }}
+            source={imagepath.awardImage}
+          />
+          <View style={{marginStart: 5}}>
+            <Text style={globalFontStyle(22, '600', '#17202A').text}>
+              10 {t('Years')}
+            </Text>
+            <Text style={globalFontStyle(14, '400', '#7C7C7C').text}>
+              {t('Experience')}
+            </Text>
+          </View>
+        </View>
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 20,
+            height: scaleHeight(63),
+            backgroundColor: appColors.Primary,
           }}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <Image
-              style={{width: 50, height: 50, marginHorizontal: 10}}
-              source={imagepath.backButtonImage}
-              marginLeft={true}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('MyProfile');
-            }}>
-            <Image
-              style={{width: 40, height: 40, marginRight: 25}}
-              source={imagepath.profileImage}
-              marginLeft={true}
-            />
-          </TouchableOpacity>
+          <AppRatingTextView
+            textStyle={globalFontStyle(14, '400', '#CCCCFF').text}
+            numberStyle={globalFontStyle(20, '600', '#FFFFFF').text}
+            item={{
+              clients: '1000+',
+              clinic_name: 'Copenhagen Cosmetics',
+              id: '1',
+              image: 31,
+              rating: '5.0',
+              reviewTxt: '121',
+            }}
+          />
         </View>
-        <ScrollView>
-          <View style={{height: 350}}>
-            <View style={{height: 250, marginTop: 30}}>
-              <Image
-                style={styles.imageContainer}
-                source={imagepath.bestBotoxImage}
+      </View>
+    );
+  };
+
+  const handleConfirmButtonPress = () => {
+    setAppointmentStatus('PENDING'); // Change state value when button is pressed
+    setTimeout(() => {
+      setAppointmentStatus('CONFIRM'); // Change state value back after 10 seconds
+    }, 9000); // 10 seconds in milliseconds
+  };
+
+  const renderAppointmentPending = () => {
+    return (
+      <View style={{margin: 20, alignItems: 'center'}}>
+        <Text
+          style={[
+            globalFontStyle(24, '700', '#FFFFFF').text,
+            {textAlign: 'center', marginBottom: 15},
+          ]}
+          numberOfLines={2}>
+          Your appointment has been sent
+        </Text>
+        <Text
+          style={globalFontStyle(13, '400', '#FFFFFF').text}
+          numberOfLines={2}>
+          Story will confirm you booking shortly
+        </Text>
+
+        <Image
+          source={imagepath.bestBotoxImage}
+          style={{
+            height: scaleHeight(161),
+            width: scaleSize(281),
+            borderRadius: scaleSize(15),
+            marginVertical: 20,
+          }}
+        />
+        <LottieView
+          source={appLottie.done}
+          autoPlay
+          loop
+          style={{width: scaleHeight(140), aspectRatio: 1 / 1}}
+        />
+
+        <Text
+          style={[
+            globalFontStyle(13, '400', '#FFFFFF').text,
+            {textAlign: 'center', marginBottom: 15},
+          ]}
+          numberOfLines={4}>
+          You can close this, we will notify you when the clinic has confirmed
+          you appointment. You can find your appointment in your profile.
+        </Text>
+      </View>
+    );
+  };
+
+  const renderAppointmentConfirm = () => {
+    return (
+      <View style={{margin: 20, alignItems: 'center'}}>
+        <Text
+          style={[
+            globalFontStyle(24, '700', '#FFFFFF').text,
+            {textAlign: 'center', marginBottom: 15},
+          ]}
+          numberOfLines={2}>
+          Your booking is confirmed!
+        </Text>
+        <Text
+          style={globalFontStyle(13, '400', '#FFFFFF').text}
+          numberOfLines={2}>
+          We have emailed you your booking details.
+        </Text>
+        <Image
+          source={imagepath.bestBotoxImage}
+          style={{
+            height: scaleHeight(161),
+            width: scaleSize(281),
+            borderRadius: scaleSize(15),
+            marginTop: 20,
+          }}
+        />
+        <ZigzagView
+          surfaceColor={appColors.Secondary}
+          backgroundColor={'transparent'}
+          top={false}>
+          <View
+            style={{
+              justifyContent: 'center',
+              paddingVertical: 30,
+              backgroundColor: appColors.Secondary,
+              width: scaleSize(175),
+            }}>
+            <View
+              style={{
+                alignContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={[
+                  globalFontStyle(15, '600', '#FFFFFF').text,
+                  {textAlign: 'center'},
+                ]}>
+                Appointment details
+              </Text>
+              <DashedLine
+                width={deviceWidth * 0.4}
+                height={1}
+                color={appColors.TextPrimary}
               />
-            </View>
-            <View style={styles.titleContainer}>
-              <View
-                style={{
-                  width: 191,
-                  height: 38,
-                  backgroundColor: 'rgba(77, 77,77, 0.3)',
-                  borderRadius: 20,
-                  justifyContent: 'center',
-                }}>
-                <Text
-                  style={{
-                    width: '100%',
-                    height: 24,
-                    color: '#FFFFFF',
-                    fontWeight: '600',
-                    fontFamily: 'Poppins-Regular',
-                    fontSize: 16,
-                    textAlign: 'center',
-                  }}>
-                  {t('Story')}
-                </Text>
-              </View>
-              <View>
-                <Image
-                  style={{width: 38, height: 38, resizeMode: 'cover'}}
-                  source={imagepath.hurtBgImage}
-                />
-                <Image
-                  style={{
-                    width: 18,
-                    height: 18,
-                    position: 'absolute',
-                    marginLeft: 10,
-                    marginTop: 11,
-                  }}
-                  source={imagepath.hurtIcon}
-                />
-              </View>
-            </View>
-            <View style={{flexDirection: 'row', height: 50}}>
-              <View
-                style={{width: 171, height: 25, marginTop: 10, marginLeft: 10}}>
-                <Text
-                  style={{
-                    color: '#607274',
-                    fontWeight: '500',
-                    fontFamily: 'Poppins-Regular',
-                    fontSize: 16,
-                    textAlign: 'center',
-                  }}>
-                  {t('Booking Appointment')}
-                </Text>
-              </View>
+              <Text
+                style={[
+                  globalFontStyle(20, '400', '#FFFFFF').text,
+                  {marginBottom: 15},
+                ]}>
+                Story Clinic
+              </Text>
+              <View style={{marginBottom: 15}}>
+                <View style={{flexDirection: 'row'}}>
+                  <Icon
+                    name={'calendar'}
+                    size={20}
+                    color={appColors.TextPrimary}
+                  />
+                  <Text
+                    style={[
+                      globalFontStyle(16, '500', '#FFFFFF').text,
+                      {
+                        marginStart: 4,
+                      },
+                    ]}>
+                    Oct 14
+                  </Text>
 
-              <View style={styles.kmTxt}>
-                <View
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    flexDirection: 'column',
-                  }}>
-                  <View style={{height: '50%', flexDirection: 'row'}}>
-                    <Image
-                      style={{
-                        width: 56,
-                        height: 56,
-                        marginLeft: 10,
-                        marginTop: 5,
-                      }}
-                      source={imagepath.awardImage}
+                  <View style={{flexDirection: 'row', marginStart: 15}}>
+                    <Icon
+                      name={'clock-o'}
+                      size={20}
+                      color={appColors.TextPrimary}
                     />
-                    <View style={{flexDirection: 'column', marginTop: 10}}>
-                      <Text
-                        style={{
-                          width: 101,
-                          height: 25,
-                          color: '#17202A',
-                          fontWeight: '700',
-                          fontFamily: 'Poppins-Regular',
-                          fontSize: 22,
-                          textAlign: 'center',
-                        }}>
-                        10 {t('Years')}
-                      </Text>
-                      <Text
-                        style={{
-                          width: 89,
-                          height: 25,
-                          color: '#7C7C7C',
-                          fontWeight: '400',
-                          fontFamily: 'Poppins-Regular',
-                          fontSize: 14,
-                          textAlign: 'center',
-                        }}>
-                        {t('Experience')}
-                      </Text>
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      height: '50%',
-                      backgroundColor: '#607274',
-                      borderBottomLeftRadius: 10,
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                    }}>
-                    <View
-                      style={{
-                        height: '100%',
-                        flexDirection: 'column',
-                        marginLeft: 10,
-                        justifyContent: 'center',
-                      }}>
-                      <Text
-                        style={{
-                          width: 71,
-                          height: 25,
-                          color: '#FFFFFF',
-                          fontWeight: '700',
-                          fontFamily: 'Poppins-Regular',
-                          fontSize: 22,
-                          textAlign: 'center',
-                        }}>
-                        1000+
-                      </Text>
-                      <Text
-                        style={{
-                          width: 71,
-                          height: 25,
-                          color: '#CCCCFF',
-                          fontWeight: '400',
-                          fontFamily: 'Poppins-Regular',
-                          fontSize: 14,
-                          textAlign: 'center',
-                        }}>
-                        {t('Clients')}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        height: '100%',
-                        flexDirection: 'column',
-                        marginRight: 10,
-                        justifyContent: 'center',
-                      }}>
-                      <View
-                        style={{
-                          width: 71,
-                          height: 25,
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}>
-                        <Text
-                          style={{
-                            color: '#FFFFFF',
-                            fontWeight: '700',
-                            fontFamily: 'Poppins-Regular',
-                            fontSize: 22,
-                            textAlign: 'center',
-                          }}>
-                          5.9
-                        </Text>
-                        <Image
-                          style={{width: 11, height: 11, marginLeft: 5}}
-                          source={imagepath.ratingStarImage}
-                        />
-                      </View>
-
-                      <View
-                        style={{
-                          width: 75,
-                          height: 25,
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}>
-                        <Text
-                          style={{
-                            color: '#CCCCFF',
-                            fontWeight: '400',
-                            fontFamily: 'Poppins-Regular',
-                            fontSize: 14,
-                            textAlign: 'center',
-                          }}>
-                          123
-                        </Text>
-                        <Text
-                          style={{
-                            color: '#CCCCFF',
-                            fontWeight: '400',
-                            fontFamily: 'Poppins-Regular',
-                            fontSize: 14,
-                            textAlign: 'center',
-                            marginLeft: 3,
-                          }}>
-                          {t('reviews')}
-                        </Text>
-                      </View>
-                    </View>
+                    <Text
+                      style={[
+                        globalFontStyle(16, '500', '#FFFFFF').text,
+                        {
+                          marginStart: 4,
+                        },
+                      ]}>
+                      Oct 14
+                    </Text>
                   </View>
                 </View>
               </View>
+              <Text style={globalFontStyle(16, '300', '#FFFFFF').text}>
+                Treatment
+              </Text>
+              <Text style={globalFontStyle(16, '300', '#FFFFFF').text}>
+                Lip Filler
+              </Text>
             </View>
           </View>
-          <View>
-            <Text
-              style={{
-                width: 154,
-                height: 25,
-                marginLeft: 21,
-                color: '#17202A',
-                fontWeight: '500',
-                fontFamily: 'Poppins-Regular',
-                fontSize: 18,
-              }}>
-              {t('Select Treatments')}
-            </Text>
-            <View style={{marginHorizontal: 20, marginTop: 10}}>
-              <View
-                style={{
-                  width: '100%',
-                  height: 50,
-                  backgroundColor: 'white',
-                  padding: 10,
-                  borderRadius: 5,
-                  elevation: 10,
-                }}>
-                <Dropdown
-                  style={[
-                    styles.dropdown,
-                    isFocus && {backgroundColor: 'white'},
-                  ]}
-                  placeholderStyle={[
-                    styles.placeholderStyle,
-                    isFocus && {color: '#607274'},
-                  ]}
-                  selectedTextStyle={[
-                    styles.selectedTextStyle,
-                    isFocus && {color: '#607274'},
-                  ]}
-                  inputSearchStyle={styles.inputSearchStyle}
-                  iconStyle={[
-                    styles.iconStyle,
-                    isFocus && {width: 20, height: 20, tintColor: '#607274'},
-                  ]}
-                  data={locations}
-                  search
-                  maxHeight={300}
-                  labelField="location"
-                  valueField="value"
-                  placeholder={
-                    !isFocus
-                      ? 'Select from our 70 different treatments'
-                      : t('select')
-                  }
-                  searchPlaceholder={t('search')}
-                  value={value}
-                  onFocus={() => setIsFocus(true)}
-                  onBlur={() => setIsFocus(false)}
-                  onChange={item => {
-                    setValue(item.value);
-                    setIsFocus(false);
-                  }}
-                />
-              </View>
-            </View>
-          </View>
-          {customCalenderView()}
-        </ScrollView>
+        </ZigzagView>
+
+        <AppButton
+          primary
+          title="Perfect!"
+          style={{width: deviceWidth * 0.8}}
+          click={() => navigation.navigate(appScreens.home)}
+        />
       </View>
-    </SafeAreaView>
+    );
+  };
+
+  return (
+    <AppKeyBoardAvoidingView>
+      {appointmentStatus == 'PENDING' && (
+        <AppBlurredOverlay>{renderAppointmentPending()}</AppBlurredOverlay>
+      )}
+      {appointmentStatus == 'CONFIRM' && (
+        <AppBlurredOverlay>{renderAppointmentConfirm()}</AppBlurredOverlay>
+      )}
+      <AppNavBar />
+      <ScrollView style={globalStyle.screenContainer}>
+        <AppImageSlider slides={tmpImageSliderData} />
+        <View style={styles.titleContainer}>
+          <Text style={[globalStyle.font18500, {color: appColors.Primary}]}>
+            {t('Booking Appointment')}
+          </Text>
+          {renderHighLightedView()}
+        </View>
+        <View style={{marginHorizontal: 20}}>{renderSelectTreatment()}</View>
+        {customCalenderView()}
+        {renderDescriptionView()}
+        <AppButton
+          title="Confirm appointment"
+          primary
+          click={handleConfirmButtonPress}
+        />
+      </ScrollView>
+    </AppKeyBoardAvoidingView>
   );
 };
 
@@ -432,12 +426,9 @@ const styles = StyleSheet.create({
 
   titleContainer: {
     width: '100%',
-    height: 70,
-    position: 'absolute',
-    marginTop: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
+    marginStart: 20,
   },
 
   clientsTxt: {
@@ -460,6 +451,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#607274',
   },
+  container: {
+    marginHorizontal: 20,
+    marginBottom: 20,
+  },
+  input: {
+    height: 100,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingTop: 10, // Add padding to the top for better spacing
+    marginBottom: 50,
+  },
+  title: {
+    color: '#17202A',
+    fontWeight: '500',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 18,
+  },
 });
 
 const calenderStyle = StyleSheet.create({
@@ -471,6 +481,7 @@ const calenderStyle = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: 20,
+    marginBottom: 6,
   },
   title: {},
   titleText: {
@@ -497,5 +508,20 @@ const calenderStyle = StyleSheet.create({
     fontSize: 20,
     fontWeight: '300',
     color: '#17202A',
+  },
+});
+
+const highlightedStyle = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: 'white',
+    flex: 1,
+    width: scaleSize(170),
+    borderTopRightRadius: scaleSize(15),
+    borderBottomStartRadius: scaleSize(15),
+    right: 20,
+    overflow: 'hidden',
+    justifyContent: 'center',
   },
 });

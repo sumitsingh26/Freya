@@ -12,6 +12,7 @@ import imagepath from '../images/Images';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
+import {appColors} from '../utils/constant';
 
 const EditProfile = () => {
   const {t} = useTranslation();
@@ -77,7 +78,7 @@ const EditProfile = () => {
                 fontWeight: '400',
                 fontFamily: 'Poppins-Regular',
                 fontSize: 14,
-                color: '#494949',
+                color: appColors.Text,
               }}>
               {t('Change my photo')}
             </Text>
@@ -92,7 +93,7 @@ const EditProfile = () => {
                   fontWeight: '500',
                   fontFamily: 'Poppins-Regular',
                   fontSize: 14,
-                  color: '#494949',
+                  color: appColors.Text,
                 }}>
                 {t('Name')}
               </Text>
@@ -130,7 +131,7 @@ const EditProfile = () => {
                   fontWeight: '500',
                   fontFamily: 'Poppins-Regular',
                   fontSize: 14,
-                  color: '#494949',
+                  color: appColors.Text,
                 }}>
                 {t('gender')}
               </Text>
@@ -168,7 +169,7 @@ const EditProfile = () => {
                   fontWeight: '500',
                   fontFamily: 'Poppins-Regular',
                   fontSize: 14,
-                  color: '#494949',
+                  color: appColors.Text,
                 }}>
                 {t('City')}
               </Text>
@@ -211,7 +212,7 @@ const EditProfile = () => {
                   fontWeight: '500',
                   fontFamily: 'Poppins-Regular',
                   fontSize: 14,
-                  color: '#494949',
+                  color: appColors.Text,
                 }}>
                 {t('City')}
               </Text>
@@ -233,7 +234,7 @@ const EditProfile = () => {
                       fontWeight: '300',
                       fontFamily: 'Poppins-Regular',
                       fontSize: 16,
-                      color: '#494949',
+                      color: appColors.Text,
                     }}>
                     +45
                   </Text>
@@ -281,7 +282,7 @@ const EditProfile = () => {
                   fontWeight: '500',
                   fontFamily: 'Poppins-Regular',
                   fontSize: 14,
-                  color: '#494949',
+                  color: appColors.Text,
                 }}>
                 {t('e_mail')}
               </Text>

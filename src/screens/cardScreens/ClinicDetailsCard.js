@@ -3,13 +3,14 @@ import React, {startTransition} from 'react';
 import imagepath from '../../images/Images';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
+import {appColors, appScreens} from '../../utils/constant';
 
 const ClinicDetailsCard = ({item}) => {
   const {t} = useTranslation();
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={{width: '90%', height: 250}}>
+      <View style={{height: 250}}>
         <Image style={styles.mainLayout} source={item.image} />
         <View style={styles.kmTxt}>
           <Text
@@ -42,9 +43,8 @@ const ClinicDetailsCard = ({item}) => {
           flexDirection: 'row',
           padding: 10,
           justifyContent: 'space-between',
-          marginRight: 15,
         }}>
-        <View style={{flexDirection: 'column', marginHorizontal: 15}}>
+        <View style={{flexDirection: 'column'}}>
           <Text style={styles.clinic_txt}>{item.clinic_name}</Text>
           <View style={{flexDirection: 'row'}}>
             <Image
@@ -56,7 +56,7 @@ const ClinicDetailsCard = ({item}) => {
                 fontWeight: '500',
                 fontFamily: 'Poppins-Bold',
                 fontSize: 14,
-                color: '#494949',
+                color: appColors.Text,
                 marginLeft: 5,
               }}>
               {item.rating}
@@ -66,7 +66,7 @@ const ClinicDetailsCard = ({item}) => {
                 fontWeight: '500',
                 fontFamily: 'Poppins-Regular',
                 fontSize: 14,
-                color: '#494949',
+                color: appColors.Text,
                 marginLeft: 5,
               }}>
               ({item.reviewTxt} {t('reviews')})
@@ -83,7 +83,7 @@ const ClinicDetailsCard = ({item}) => {
                 fontWeight: '300',
                 fontFamily: 'Poppins-Regular',
                 fontSize: 14,
-                color: '#494949',
+                color: appColors.Text,
                 marginLeft: 5,
               }}>
               {item.location}
@@ -91,7 +91,7 @@ const ClinicDetailsCard = ({item}) => {
           </View>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('AppointmentScreen')}>
+          onPress={() => navigation.navigate(appScreens.clinicDetails)}>
           <View style={styles.forwardContainer}>
             <Image
               style={{width: 24, height: 14}}
@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
     height: 250,
     backgroundColor: 'black',
     borderRadius: 10,
-    marginLeft: 20,
     resizeMode: 'cover',
   },
   clinic_txt: {
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#DED0B6',
     position: 'absolute',
     bottom: 0,
-    right: -20,
+    right: 0,
     marginBottom: 20,
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 10,
