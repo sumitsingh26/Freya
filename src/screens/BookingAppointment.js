@@ -168,9 +168,9 @@ const BookingAppointment = () => {
             }}
             source={imagepath.awardImage}
           />
-          <View style={{marginStart: 5}}>
-            <Text style={globalFontStyle(22, '600', '#17202A').text}>
-              10 {t('Years')}
+          <View style={{marginStart: 5 , flex : 1}}>
+            <Text style={globalFontStyle(22, '600', '#17202A').text} numberOfLines={2}>
+              10 {t('Years')} 
             </Text>
             <Text style={globalFontStyle(14, '400', '#7C7C7C').text}>
               {t('Experience')}

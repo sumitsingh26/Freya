@@ -132,7 +132,7 @@ function PersionScreen() {
 const Tab = createBottomTabNavigator();
 const Dashboard = props => {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1 , backgroundColor : 'white'}}>
       <Tab.Navigator
         initialRouteName="HomeScreen"
         screenOptions={{
@@ -143,8 +143,6 @@ const Dashboard = props => {
             marginHorizontal: scaleSize(25),
             borderRadius: 40,
             backgroundColor: appColors.Primary,
-            marginTop: 10,
-            marginBottom: !hasNotch() ? 10 : 0,
           },
           tabBarItemStyle: {
             height: 65,

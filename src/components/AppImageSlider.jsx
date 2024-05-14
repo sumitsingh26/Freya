@@ -8,38 +8,32 @@ import { globalFontStyle } from '../utils/styles';
 
 const { width } = Dimensions.get('window');
 
+const PaginationDots = ({ activeIndex, length }) => (
+    <View style={styles.paginationContainer}>
+        {Array.from({ length }, (_, i) => (
+            <Animated.View
+                key={i}
+                style={[styles.paginationDot, {
+                    backgroundColor: i === activeIndex ? appColors.Primary : appColors.Secondary,
+                }]}
+            />
+        ))}
+    </View>
+);
+
 const AppImageSlider = ({ slides, extraButtons, showPagination }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const flatListRef = useRef(null);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) =>
-                prevIndex === slides.length - 1 ? 0 : prevIndex + 1
-            );
-            flatListRef.current.scrollToIndex({
-                animated: true,
-                index: currentIndex === slides.length - 1 ? 0 : currentIndex + 1,
-            });
+            const newIndex = (currentIndex + 1) % slides.length;
+            setCurrentIndex(newIndex);
+            flatListRef.current.scrollToIndex({ index: newIndex });
         }, 3000);
 
         return () => clearInterval(interval);
     }, [currentIndex]);
-
-    const pagination = () => {
-        return (
-            <View style={styles.paginationContainer}>
-                {slides.map((_, index) => (
-                    <Animated.View
-                        key={index}
-                        style={[styles.paginationDot, {
-                            backgroundColor: index === currentIndex ? appColors.Primary : appColors.Secondary,
-                        }]}
-                    />
-                ))}
-            </View >
-        );
-    };
 
     return (
         <View >
@@ -54,8 +48,8 @@ const AppImageSlider = ({ slides, extraButtons, showPagination }) => {
                     <Image source={item.image} style={styles.image} />
                 )}
                 onMomentumScrollEnd={(event) => {
-                    const newIndex = Math.floor(
-                        event.nativeEvent.contentOffset.x / width
+                    const newIndex = Math.round(
+                        event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width
                     );
                     setCurrentIndex(newIndex);
                 }}
@@ -70,22 +64,22 @@ const AppImageSlider = ({ slides, extraButtons, showPagination }) => {
                     <Text style={globalFontStyle(14, '300', appColors.TextPrimary).centerText}>{`${currentIndex} / ${slides?.length}`} Photos</Text>
                 </BlurView>}
             {extraButtons && <AppExtraButtons ButtonList={extraButtons} />}
-            {showPagination && pagination()}
+            {showPagination && <PaginationDots activeIndex={currentIndex} length={slides.length} />}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        // marginHorizontal: 25,
+        flex: 1,
         borderRadius: 10,
         overflow: 'hidden',
-        marginVertical: 5
+        marginTop: 5,
+        height: scaleHeight(200)
     },
     image: {
-        width: width,
-        height: scaleHeight(244),
+        width: width - 30,
+        height: '100%',
         resizeMode: 'cover',
     },
     paginationContainer: {

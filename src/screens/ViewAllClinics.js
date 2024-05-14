@@ -68,7 +68,7 @@ const ViewAllClinics = () => {
     bottomSheetRef.current?.close();
   };
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={globalStyle.screenContainer}>
       <AppNavBar />
       <ScrollView
         style={{marginHorizontal: 20}}
@@ -78,28 +78,12 @@ const ViewAllClinics = () => {
           <Text style={styles.titleTextContainer} numberOfLines={1}>
             {t('whats_new_near_you')}✨
           </Text>
-
-            {/* <TouchableOpacity onPress={() => openFilterView()}>
-              <Image
-                style={{width: 32, height: 32, resizeMode: 'cover'}}
-                source={imagepath.bgRound}
-              />
-              <Image
-                style={{
-                  width: 13.21,
-                  height: 16.94,
-                  position: 'absolute',
-                  marginLeft: 9,
-                  marginTop: 4,
-                }}
-                source={imagepath.filterIcon}
-              />
-            </TouchableOpacity> */}
             <Icon
               color={ appColors.TextPrimary}
               name={'options-outline'}
               size={20}
-              style={globalStyle.round}
+            style={globalStyle.round}
+            onPress={openFilterView}
             />
         </View>
         <FlatList
@@ -108,12 +92,12 @@ const ViewAllClinics = () => {
             return index.id;
           }}
           data={clinicList}
-          renderItem={renderItem}></FlatList>
+          renderItem={renderItem} />
       </ScrollView>
       <AppBottomSheetContent ref={bottomSheetRef}>
         <AppFilterView onClose={closeFilterView} />
       </AppBottomSheetContent>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -141,7 +125,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   titleContainer: {
-    flex : 1,
+    // flex : 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 10,

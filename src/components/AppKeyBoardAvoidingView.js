@@ -22,7 +22,7 @@ const AppKeyBoardAvoidingView = ({imageBackground, children}) => {
       </KeyboardAwareScrollView>
     </ImageBackground>
   ) : (
-    <KeyboardAwareScrollView bounces={false} contentContainerStyle={{flex: 1}}>
+    <KeyboardAwareScrollView bounces={false} contentContainerStyle={{flex: 1 , backgroundColor :'white'}}>
       {children}
     </KeyboardAwareScrollView>
   );

@@ -1,15 +1,10 @@
 // MainContent.js
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   TextInput,
-  Text,
-  TouchableOpacity,
   TouchableWithoutFeedback,
-  Keyboard,
-  FlatList,
   StyleSheet,
-  ScrollView,
 } from 'react-native';
 import SearchResultView from './SearchResultView';
 import {appColors, tmpSearchData} from '../utils/constant';
@@ -109,6 +104,7 @@ const styles = StyleSheet.create({
     marginEnd: 10,
     flex: 1,
     height: scaleHeight(45),
+    zIndex : 999
   },
   focusedSearchInput: {
     color: appColors.Primary,
@@ -119,19 +115,18 @@ const styles = StyleSheet.create({
   },
   resultsContainer: {
     position: 'absolute',
-    top: 45, // Adjust this value to position the results view
+    top: 45, 
     left: '10%',
     right: '10%',
     backgroundColor: 'white',
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,
-    maxHeight: scaleHeight(200), // Set max height to limit the height of the results view
-    zIndex: 1, // Ensure the search results appear on top
+    maxHeight: scaleHeight(200),
+   zIndex: Number.MAX_SAFE_INTEGER - 1,
     borderWidth: 2,
     borderColor: appColors.Primary,
     borderEndEndRadius: 20,
     borderEndStartRadius: 20,
-    zIndex: 999,
   },
 });

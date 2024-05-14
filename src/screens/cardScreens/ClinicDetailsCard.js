@@ -4,13 +4,22 @@ import imagepath from '../../images/Images';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 import {appColors, appScreens} from '../../utils/constant';
+import { AppExtraButtons } from '../../components/AppButton';
 
 const ClinicDetailsCard = ({item}) => {
   const {t} = useTranslation();
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={{height: 250}}>
+      <View style={{ height: 250 }}>
+             <AppExtraButtons ButtonList={[
+              {
+                name: 'SAVE',
+                icon: 'heart-o',
+                filledIcon: 'heart',
+                filledColor: 'red',
+              },
+            ]} />
         <Image style={styles.mainLayout} source={item.image} />
         <View style={styles.kmTxt}>
           <Text

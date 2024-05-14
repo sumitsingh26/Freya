@@ -17,7 +17,7 @@ const AppNavBar = ({ isFirstScreen, searchIncluded, isProfile }) => {
         <View style={styles.container}>
             <View style={styles.safeAreaView}>
                 <View style={styles.buttonsContainer}>
-                    {!isFirstScreen ?
+                    {searchIncluded ? <AppSearchBar /> :
                         <TouchableOpacity onPress={() => navigation.goBack()}>
                             <Image
                                 style={{ width: 50, height: 50, marginHorizontal: 10 }}
@@ -25,8 +25,6 @@ const AppNavBar = ({ isFirstScreen, searchIncluded, isProfile }) => {
                                 marginLeft={true}
                             />
                         </TouchableOpacity>
-                        :
-                        <AppSearchBar />
                     }
                     {user &&
                         !isProfile &&
@@ -46,9 +44,10 @@ const AppNavBar = ({ isFirstScreen, searchIncluded, isProfile }) => {
 
 const styles = StyleSheet.create({
     container: {
+        zIndex: 999
     },
     safeAreaView: {
-        // paddingTop: !hasNotch() ? StatusBar.currentHeight : 0,
+        paddingTop: hasNotch() ? StatusBar.currentHeight : 0,
     },
     buttonsContainer: {
         flexDirection: 'row',

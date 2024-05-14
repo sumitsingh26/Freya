@@ -9,8 +9,7 @@
     "start": "react-native start",
     "test": "jest",
     "clean_android": "cd android &&  ./gradlew clean && cd ..",
-    "clean": "rm -rf node_modules package-lock.json yarn.lock",
-    "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'",
+    "connectADB": "adb connect 192.168.1.6:5555",
     "postinstall": "patch-package"
   },
   "dependencies": {

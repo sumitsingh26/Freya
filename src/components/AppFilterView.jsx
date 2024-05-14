@@ -5,10 +5,18 @@ import AppTagListView from './AppTagListView';
 import { appColors, tmpFilterData, tmpPriceData, tmpShortByData } from '../utils/constant';
 import { globalStyle } from '../utils/styles';
 import { scaleFontSize } from '../utils/screenUtils';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const AppFilterView = ({ onClose }) => {
   return (
     <View style={{ flex: 1, paddingVertical: 10 }}>
+      <Icon
+        name={'close'}
+        size={30}
+        color={appColors.Primary}
+        style={{ alignSelf: 'flex-end' }}
+        onPress={onClose}
+      />
       <Text style={style.title}>Filter:</Text>
       <AppTagListView tags={tmpFilterData} />
       <View style={globalStyle.dividerStyle} />
@@ -21,7 +29,6 @@ const AppFilterView = ({ onClose }) => {
         <Text style={style.text}>SORT BY</Text>
         <AppTagListView tags={tmpShortByData} singleLine />
       </View>
-      <Button title="Close" onPress={onClose} />
     </View>
   );
 };
@@ -33,6 +40,7 @@ const style = StyleSheet.create({
     fontSize: scaleFontSize(25),
     lineHeight: 37.5,
     color: appColors.Primary,
+    marginBottom: 10
   },
   text: {
     fontWeight: '600',

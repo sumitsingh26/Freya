@@ -6,6 +6,7 @@ import {
   Dimensions,
   TextInput,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
 import imagepath from '../../images/Images';
@@ -33,6 +34,7 @@ import AppBottomSheetContent from '../../components/AppBottomSheetContent';
 import {globalStyle} from '../../utils/styles';
 const _ = require('lodash');
 import Icon from 'react-native-vector-icons/Ionicons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const Home = () => {
@@ -58,7 +60,7 @@ const Home = () => {
   return (
     <View style={globalStyle.screenContainer}>
       {loading === LoadingType.pending ? <AppLoader openModal={true} /> : null}
-      <AppNavBar isFirstScreen={true} />
+      <AppNavBar  searchIncluded={true}/>
       <AppKeyBoardAvoidingView>
         <ScrollView>
           <View style={styles.titleContainer}>
@@ -83,7 +85,7 @@ const Home = () => {
               />
           </View>
           <View
-            style={{ marginHorizontal: scaleSize(15) }}
+            style={{ marginHorizontal: scaleSize(15) , marginBottom : -20 }}
           >
             <AppImageSlider slides={tmpImageSliderData} showPagination={true} />
           </View>
@@ -110,7 +112,7 @@ const Home = () => {
       <AppBottomSheetContent ref={bottomSheetRef}>
         <AppFilterView onClose={closeFilterView} />
       </AppBottomSheetContent>
-    </View>
+      </View>
   );
 };
 
